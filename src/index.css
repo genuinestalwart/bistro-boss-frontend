@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--primary: 255 255 255;
+		--secondary: 21 21 21;
+		--neutral: 115 115 115;
+		--accent: 255 194 111;
+	}
+	body {
+		font-family: "Inter Variable", sans-serif;
+		@apply antialiased;
+	}
+	.font-cinzel {
+		font-family: "Cinzel Variable", sans-serif;
+	}
+}
