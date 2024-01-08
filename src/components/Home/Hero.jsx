@@ -1,19 +1,19 @@
-import swiperSlide1 from "../../assets/home/swiperSlide1.jpg";
-import swiperSlide2 from "../../assets/home/swiperSlide2.jpg";
-import swiperSlide3 from "../../assets/home/swiperSlide3.png";
-import swiperSlide4 from "../../assets/home/swiperSlide4.jpg";
-import swiperSlide5 from "../../assets/home/swiperSlide5.png";
-import swiperSlide6 from "../../assets/home/swiperSlide6.png";
+import carouselSlide1 from "../../assets/home/carouselSlide1.jpg";
+import carouselSlide2 from "../../assets/home/carouselSlide2.jpg";
+import carouselSlide3 from "../../assets/home/carouselSlide3.png";
+import carouselSlide4 from "../../assets/home/carouselSlide4.jpg";
+import carouselSlide5 from "../../assets/home/carouselSlide5.png";
+import carouselSlide6 from "../../assets/home/carouselSlide6.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const carouselItems = [
-	{ image: swiperSlide1 },
-	{ image: swiperSlide2 },
-	{ image: swiperSlide3 },
-	{ image: swiperSlide4 },
-	{ image: swiperSlide5 },
-	{ image: swiperSlide6 },
+	{ image: carouselSlide1 },
+	{ image: carouselSlide2 },
+	{ image: carouselSlide3 },
+	{ image: carouselSlide4 },
+	{ image: carouselSlide5 },
+	{ image: carouselSlide6 },
 ];
 
 const Hero = () => {
@@ -26,6 +26,7 @@ const Hero = () => {
 				infiniteLoop
 				interval={4000}
 				showArrows={false}
+				showStatus={false}
 				stopOnHover={false}>
 				{carouselItems.map((carouselItem, index) => (
 					<div
