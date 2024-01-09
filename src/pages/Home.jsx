@@ -1,5 +1,6 @@
 import AboutService from "../components/Home/AboutService";
 import CallUs from "../components/Home/CallUs";
+import Featured from "../components/Home/Featured";
 import FoodMenu from "../components/Home/FoodMenu";
 import Hero from "../components/Home/Hero";
 import OrderOnline from "../components/Home/OrderOnline";
@@ -19,6 +20,7 @@ const Home = () => {
 				<FoodMenu />
 				<CallUs />
 				<Recommended />
+				<Featured />
 			</main>
 
 			<Footer />
