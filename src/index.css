@@ -10,6 +10,7 @@
 		--accent: 255 194 111;
 	}
 	* {
+		@apply transition-all;
 		&::-webkit-scrollbar {
 			@apply w-1;
 		}

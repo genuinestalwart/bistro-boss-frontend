@@ -77,7 +77,7 @@ const FoodMenu = () => {
 				))}
 			</div>
 
-			<button className='hover:bg-secondary hover:border-transparent border-b-2 border-secondary font-semibold mt-8 p-3 rounded-md text-sm hover:text-accent transition-all uppercase'>
+			<button className='hover:bg-secondary hover:border-transparent border-b-2 border-secondary font-semibold mt-8 p-3 rounded-lg text-sm hover:text-accent uppercase'>
 				View Full Menu
 			</button>
 		</section>
