@@ -26,17 +26,16 @@ const OrderOnline = () => {
 				---From 11:00am to 10:00pm---
 			</div>
 
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
+			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
 
 			<h1 className='font-medium my-3 text-2xl uppercase'>
 				Order Online
 			</h1>
 
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
-			<br />
+			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
 
 			<Swiper
-				className='[&_div.swiper-pagination]:mt-3 [&_div.swiper-pagination]:static'
+				className='mt-8 [&_div.swiper-pagination]:mt-3 [&_div.swiper-pagination]:static'
 				autoplay={{
 					delay: 4000,
 					disableOnInteraction: false,

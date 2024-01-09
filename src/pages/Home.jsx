@@ -1,4 +1,6 @@
 import AboutService from "../components/Home/AboutService";
+import CallUs from "../components/Home/CallUs";
+import FoodMenu from "../components/Home/FoodMenu";
 import Hero from "../components/Home/Hero";
 import OrderOnline from "../components/Home/OrderOnline";
 import Footer from "../components/shared/Footer";
@@ -13,6 +15,8 @@ const Home = () => {
 				<Hero />
 				<OrderOnline />
 				<AboutService />
+				<FoodMenu />
+				<CallUs />
 			</main>
 
 			<Footer />

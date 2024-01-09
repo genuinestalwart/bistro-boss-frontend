@@ -5,6 +5,7 @@ import "@fontsource-variable/inter";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import Home from "./pages/Home";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const router = createBrowserRouter([
 	{
@@ -19,8 +20,21 @@ const router = createBrowserRouter([
 	},
 ]);
 
+const theme = createTheme({
+	palette: {
+		primary: {
+			main: "#ffffff",
+		},
+		secondary: {
+			main: "#151515",
+		},
+	},
+});
+
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<ThemeProvider theme={theme}>
+			<RouterProvider router={router} />
+		</ThemeProvider>
 	</React.StrictMode>
 );
