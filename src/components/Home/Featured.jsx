@@ -9,7 +9,7 @@ const Featured = () => {
 					<HomeTitles
 						smallTitle='Check it out'
 						bigTitle='From Our Menu'
-						borderColor='[&.css-9mgopn-MuiDivider-root]:border-primary'
+						borderColor='border-primary'
 					/>
 
 					<div className='gap-12 grid grid-cols-2 mt-8'>
