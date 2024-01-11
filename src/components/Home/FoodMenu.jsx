@@ -1,5 +1,5 @@
-import { Divider } from "@mui/material";
 import MenuIcon from "../shared/MenuIcon";
+import HomeTitles from "../shared/HomeTitles";
 
 const menuItems = [
 	{
@@ -43,17 +43,11 @@ const menuItems = [
 const FoodMenu = () => {
 	return (
 		<section className='mx-auto text-center w-3/4'>
-			<div className='italic font-medium mb-2 text-accent text-sm'>
-				---Check it out---
-			</div>
-
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
-
-			<h1 className='font-medium my-3 text-2xl uppercase'>
-				From Our Menu
-			</h1>
-
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
+			<HomeTitles
+				smallTitle='Check it out'
+				bigTitle='From Our Menu'
+				borderColor=''
+			/>
 
 			<div className='gap-6 grid grid-cols-2 mt-8'>
 				{menuItems.map((menuItem, index) => (

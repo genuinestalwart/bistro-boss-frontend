@@ -1,24 +1,18 @@
-import { Divider } from "@mui/material";
 import featuredFood from "../../assets/home/featured.jpg";
+import HomeTitles from "../shared/HomeTitles";
 
 const Featured = () => {
 	return (
 		<section className='bg-center bg-cover bg-[url("./assets/home/banner.jpg")] bg-no-repeat'>
 			<div className='bg-secondary/75 py-20 text-primary'>
 				<div className='mx-auto text-center w-3/4'>
-					<div className='italic font-medium mb-2 text-accent text-sm'>
-						---Check it out---
-					</div>
+					<HomeTitles
+						smallTitle='Check it out'
+						bigTitle='From Our Menu'
+						borderColor='[&.css-9mgopn-MuiDivider-root]:border-primary'
+					/>
 
-					<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:border-primary [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
-
-					<h1 className='font-medium my-3 text-2xl uppercase'>
-						From Our Menu
-					</h1>
-
-					<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:border-primary [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
-
-					<div className='gap-8 grid grid-cols-2 mt-8'>
+					<div className='gap-12 grid grid-cols-2 mt-8'>
 						<div>
 							<img
 								className='h-auto rounded w-full'

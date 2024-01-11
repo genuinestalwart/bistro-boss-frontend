@@ -1,11 +1,6 @@
-import {
-	Card,
-	CardActions,
-	CardContent,
-	CardMedia,
-	Divider,
-} from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import caeserSalad from "../../assets/home/caeserSalad.jpg";
+import HomeTitles from "../shared/HomeTitles";
 
 const foodItems = [
 	{
@@ -28,17 +23,11 @@ const foodItems = [
 const Recommended = () => {
 	return (
 		<section className='mx-auto text-center w-3/4'>
-			<div className='italic font-medium mb-2 text-accent text-sm'>
-				---Should Try---
-			</div>
-
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
-
-			<h1 className='font-medium my-3 text-2xl uppercase'>
-				Chef Recommends
-			</h1>
-
-			<Divider className='[&.css-9mgopn-MuiDivider-root]:border-y [&.css-9mgopn-MuiDivider-root]:mx-auto w-1/3' />
+			<HomeTitles
+				smallTitle='Should Try'
+				bigTitle='Chef Recommends'
+				borderColor=''
+			/>
 
 			<div className='gap-6 grid grid-cols-3 mt-8'>
 				{foodItems.map((foodItem, index) => (
