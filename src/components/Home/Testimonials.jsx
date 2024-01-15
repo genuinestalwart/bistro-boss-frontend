@@ -26,7 +26,7 @@ const Testimonials = () => {
 	}, []);
 
 	return (
-		<section className='mx-auto text-center w-3/4'>
+		<section className='mx-auto text-center w-4/5 md:w-3/4'>
 			<HomeTitles
 				smallTitle='What Our Clients Say'
 				bigTitle='Testimonials'
@@ -46,7 +46,7 @@ const Testimonials = () => {
 					<SwiperSlide key={review._id}>
 						<div className='flex flex-col items-center'>
 							<Rating
-								className='[&.rr--group]:w-1/5'
+								className='[&.rr--group]:w-3/5 md:[&.rr--group]:w-1/5'
 								itemStyles={starStyles}
 								readOnly
 								value={review.rating}
@@ -54,12 +54,14 @@ const Testimonials = () => {
 
 							<div className='flex justify-center my-6 w-1/5'>
 								<FontAwesomeIcon
-									className='text-8xl'
+									className='text-7xl md:text-8xl'
 									icon={faQuoteLeft}
 								/>
 							</div>
 
-							<p className='text-sm w-3/4'>{review.details}</p>
+							<p className='text-sm w-3/5 md:w-3/4'>
+								{review.details}
+							</p>
 
 							<h3 className='font-medium mt-1 text-accent text-lg uppercase'>
 								{review.name}

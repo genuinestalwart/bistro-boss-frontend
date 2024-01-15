@@ -5,14 +5,14 @@ const Featured = () => {
 	return (
 		<section className='bg-center bg-cover bg-[url("./assets/home/banner.jpg")] bg-no-repeat'>
 			<div className='bg-secondary/75 py-20 text-primary'>
-				<div className='mx-auto text-center w-3/4'>
+				<div className='mx-auto text-center w-4/5 md:w-3/4'>
 					<HomeTitles
 						smallTitle='Check it out'
 						bigTitle='From Our Menu'
 						borderColor='border-primary'
 					/>
 
-					<div className='gap-12 grid grid-cols-2 mt-8'>
+					<div className='gap-12 grid grid-cols-1 md:grid-cols-2 mt-8'>
 						<div>
 							<img
 								className='h-auto rounded w-full'

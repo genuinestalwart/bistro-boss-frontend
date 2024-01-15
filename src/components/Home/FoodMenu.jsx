@@ -42,14 +42,14 @@ const menuItems = [
 
 const FoodMenu = () => {
 	return (
-		<section className='mx-auto text-center w-3/4'>
+		<section className='mx-auto text-center w-4/5 md:w-3/4'>
 			<HomeTitles
 				smallTitle='Check it out'
 				bigTitle='From Our Menu'
 				borderColor=''
 			/>
 
-			<div className='gap-6 grid grid-cols-2 mt-8'>
+			<div className='gap-6 grid grid-cols-1 md:grid-cols-2 mt-8'>
 				{menuItems.map((menuItem, index) => (
 					<div key={index} className='flex items-start'>
 						<div className='w-1/5'>

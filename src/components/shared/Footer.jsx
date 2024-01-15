@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Footer = () => {
 	return (
 		<footer className='bg-secondary'>
-			<div className='flex'>
-				<div className='bg-slate-800 py-16 w-1/2'>
-					<div className='ml-auto space-y-4 text-center w-3/4'>
+			<div className='md:flex'>
+				<div className='bg-slate-800 py-16 md:w-1/2'>
+					<div className='md:ml-auto space-y-4 text-center md:w-3/4'>
 						<h3 className='text-xl uppercase'>Contact Us</h3>
 
 						<p className='leading-loose text-sm'>
@@ -25,8 +25,8 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<div className='bg-slate-900 py-16 w-1/2'>
-					<div className='mr-auto space-y-6 text-center w-3/4'>
+				<div className='bg-slate-900 py-16 md:w-1/2'>
+					<div className='md:mr-auto space-y-6 text-center md:w-3/4'>
 						<h3 className='text-xl uppercase'>Follow Us</h3>
 						<p className='text-sm'>Join us on social media</p>
 

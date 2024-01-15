@@ -29,9 +29,7 @@ const Hero = () => {
 				showStatus={false}
 				stopOnHover={false}>
 				{carouselItems.map((carouselItem, index) => (
-					<div
-						key={index}
-						className='h-screen min-[1440px]:max-h-[810px]'>
+					<div key={index}>
 						<img
 							className='block h-full object-center object-cover w-full'
 							src={carouselItem.image}

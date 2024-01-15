@@ -22,18 +22,18 @@ const foodItems = [
 
 const Recommended = () => {
 	return (
-		<section className='mx-auto text-center w-3/4'>
+		<section className='mx-auto text-center md:w-3/4'>
 			<HomeTitles
 				smallTitle='Should Try'
 				bigTitle='Chef Recommends'
 				borderColor=''
 			/>
 
-			<div className='gap-6 grid grid-cols-3 mt-8'>
+			<div className='gap-6 md:grid grid-cols-3 mt-8 overflow-x-auto overflow-y-hidden md:overflow-visible px-12 [&::-webkit-scrollbar]:hidden space-x-6 whitespace-nowrap'>
 				{foodItems.map((foodItem, index) => (
 					<Card
 						key={index}
-						className='[&.css-bhp9pd-MuiPaper-root-MuiCard-root]:bg-neutral/10 [&.css-bhp9pd-MuiPaper-root-MuiCard-root]:shadow-md [&.css-bhp9pd-MuiPaper-root-MuiCard-root]:shadow-neutral/25'>
+						className='[&.css-bhp9pd-MuiPaper-root-MuiCard-root]:bg-neutral/10 inline-block [&.css-bhp9pd-MuiPaper-root-MuiCard-root]:shadow-md [&.css-bhp9pd-MuiPaper-root-MuiCard-root]:shadow-neutral/25 w-full whitespace-normal'>
 						<CardMedia
 							component='img'
 							image={foodItem.image}

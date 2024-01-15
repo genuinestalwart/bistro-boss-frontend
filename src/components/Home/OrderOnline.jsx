@@ -21,7 +21,7 @@ const swiperItems = [
 
 const OrderOnline = () => {
 	return (
-		<section className='mx-auto text-center w-3/4'>
+		<section className='mx-auto text-center w-4/5 md:w-3/4'>
 			<HomeTitles
 				smallTitle='From 11:00am to 10:00pm'
 				bigTitle='Order Online'
@@ -34,13 +34,16 @@ const OrderOnline = () => {
 					delay: 4000,
 					disableOnInteraction: false,
 				}}
+				breakpoints={{
+					768: { slidesPerView: 4 },
+				}}
 				centeredSlides={false}
 				grabCursor={true}
 				modules={[Autoplay, Pagination]}
 				pagination={{
 					clickable: true,
 				}}
-				slidesPerView={4}
+				slidesPerView={2}
 				spaceBetween={20}>
 				{swiperItems.map((swiperItem, index) => (
 					<SwiperSlide key={index}>

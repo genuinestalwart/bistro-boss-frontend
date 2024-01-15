@@ -1,6 +1,6 @@
 const CallUs = () => {
 	return (
-		<section className='bg-secondary mx-auto py-16 text-center text-3xl w-3/4'>
+		<section className='bg-secondary mx-auto py-16 text-center text-3xl w-4/5 md:w-3/4'>
 			Call Us: +88 0192345678910
 		</section>
 	);
