@@ -7,7 +7,8 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import QuoteIcon from "../shared/QuoteIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 
 const starStyles = {
 	itemShapes: RoundedStar,
@@ -52,7 +53,10 @@ const Testimonials = () => {
 							/>
 
 							<div className='flex justify-center my-6 w-1/5'>
-								<QuoteIcon />
+								<FontAwesomeIcon
+									className='text-8xl'
+									icon={faQuoteLeft}
+								/>
 							</div>
 
 							<p className='text-sm w-3/4'>{review.details}</p>

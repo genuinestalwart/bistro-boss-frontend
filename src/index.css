@@ -26,7 +26,6 @@
 			@apply bg-primary;
 		}
 		font-family: "Inter Variable", sans-serif;
-		@apply antialiased;
 	}
 	.font-cinzel {
 		font-family: "Cinzel Variable", sans-serif;
