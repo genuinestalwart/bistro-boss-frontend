@@ -9,49 +9,75 @@ import swiperSlide2 from "../../assets/home/swiperSlide2.jpg";
 import swiperSlide3 from "../../assets/home/swiperSlide3.jpg";
 import swiperSlide4 from "../../assets/home/swiperSlide4.jpg";
 import swiperSlide5 from "../../assets/home/swiperSlide5.jpg";
-import HomeTitles from "../shared/HomeTitles";
+import SectionTitles from "../shared/SectionTitles";
+import { Box, Typography } from "@mui/material";
 
 const swiperItems = [
-	{ image: swiperSlide1 },
-	{ image: swiperSlide2 },
-	{ image: swiperSlide3 },
-	{ image: swiperSlide4 },
-	{ image: swiperSlide5 },
+	{ image: swiperSlide1, name: "Salads" },
+	{ image: swiperSlide2, name: "Pizzas" },
+	{ image: swiperSlide3, name: "Soups" },
+	{ image: swiperSlide4, name: "Desserts" },
+	{ image: swiperSlide5, name: "Salads" },
 ];
 
 const OrderOnline = () => {
 	return (
-		<section className='mx-auto text-center w-4/5 md:w-3/4'>
-			<HomeTitles
+		<Box
+			className='space-y-8'
+			component='section'
+			mx='auto'
+			width={{
+				xs: "80%",
+				md: "75%",
+			}}>
+			<SectionTitles
 				smallTitle='From 11:00am to 10:00pm'
 				bigTitle='Order Online'
-				borderColor=''
 			/>
 
 			<Swiper
-				className='mt-8 [&_div.swiper-pagination]:mt-3 [&_div.swiper-pagination]:static'
-				autoplay={{
-					delay: 4000,
-					disableOnInteraction: false,
-				}}
+				// autoplay={{
+				// 	delay: 4000,
+				// 	disableOnInteraction: false,
+				// }}
 				breakpoints={{
 					768: { slidesPerView: 4 },
 				}}
-				centeredSlides={false}
+				className='[&_div.swiper-pagination]:mt-3 [&_div.swiper-pagination]:static'
 				grabCursor={true}
 				modules={[Autoplay, Pagination]}
 				pagination={{
 					clickable: true,
 				}}
-				slidesPerView={2}
+				slidesPerView={1}
 				spaceBetween={20}>
 				{swiperItems.map((swiperItem, index) => (
-					<SwiperSlide key={index}>
-						<img src={swiperItem.image} alt='swiper slide' />
+					<SwiperSlide className='relative' key={index}>
+						<img
+							alt={swiperItem.name}
+							className='rounded-md w-full'
+							src={swiperItem.image}
+						/>
+
+						<Typography
+							className='bottom-4 z-10'
+							component='h3'
+							color='primary.main'
+							fontFamily='"Cinzel Variable", sans-serif'
+							position='absolute'
+							sx={{
+								textShadow: "1px 1px 1px #151515",
+							}}
+							textAlign='center'
+							textTransform='uppercase'
+							variant='h6'
+							width='100%'>
+							{swiperItem.name}
+						</Typography>
 					</SwiperSlide>
 				))}
 			</Swiper>
-		</section>
+		</Box>
 	);
 };
 

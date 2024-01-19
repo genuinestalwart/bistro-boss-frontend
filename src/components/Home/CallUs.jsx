@@ -1,8 +1,18 @@
+import { Box } from "@mui/material";
+
 const CallUs = () => {
 	return (
-		<section className='bg-secondary mx-auto py-16 text-center text-3xl w-4/5 md:w-3/4'>
+		<Box
+			bgcolor='secondary.main'
+			className='text-3xl'
+			color='secondary.contrastText'
+			component='section'
+			mx='auto'
+			py={16}
+			textAlign='center'
+			width={{ xs: "80%", md: "75%" }}>
 			Call Us: +88 0192345678910
-		</section>
+		</Box>
 	);
 };
 

@@ -1,47 +1,81 @@
+import { Box, Typography } from "@mui/material";
 import featuredFood from "../../assets/home/featured.jpg";
-import HomeTitles from "../shared/HomeTitles";
+import SectionTitles from "../shared/SectionTitles";
+import BorderButton from "../shared/BorderButton";
 
 const Featured = () => {
 	return (
-		<section className='bg-center bg-cover bg-[url("./assets/home/banner.jpg")] bg-no-repeat'>
-			<div className='bg-secondary/75 py-20 text-primary'>
-				<div className='mx-auto text-center w-4/5 md:w-3/4'>
-					<HomeTitles
+		<Box
+			className='bg-[url("./assets/home/banner.jpg")]'
+			color='primary.main'
+			component='section'
+			sx={{
+				backgroundAttachment: "fixed",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+				backgroundSize: "cover",
+			}}>
+			<Box className='bg-secondary/75' py={20}>
+				<Box
+					className='[&_hr]:border-primary space-y-8'
+					mx='auto'
+					width={{ xs: "80%", md: "75%" }}>
+					<SectionTitles
 						smallTitle='Check it out'
 						bigTitle='From Our Menu'
-						borderColor='border-primary'
 					/>
 
-					<div className='gap-12 grid grid-cols-1 md:grid-cols-2 mt-8'>
-						<div>
-							<img
-								className='h-auto rounded w-full'
-								src={featuredFood}
-								alt='featured food'
-							/>
-						</div>
+					<Box
+						className='space-y-8 md:space-y-0'
+						display={{ md: "flex" }}
+						justifyContent='space-between'>
+						<img
+							alt='featured food'
+							className='h-auto rounded w-full md:w-[45%]'
+							src={featuredFood}
+						/>
 
-						<div className='flex flex-col justify-center text-left'>
-							<p>March 20, 2023</p>
-							<h3 className='uppercase'>Where Can I Get Some?</h3>
+						<Box
+							className='space-y-4'
+							display='flex'
+							flexDirection='column'
+							justifyContent='center'
+							width={{ md: "45%" }}>
+							<Box>
+								<Typography variant='subtitle2'>
+									March 20, 2023
+								</Typography>
 
-							<p className='text-sm'>
+								<Typography
+									component='h3'
+									textTransform='uppercase'
+									variant='h6'>
+									Where Can I Get Some?
+								</Typography>
+							</Box>
+
+							<Typography variant='body2'>
 								Lorem ipsum dolor sit amet consectetur
 								adipisicing elit. Error voluptate facere,
 								deserunt dolores maiores quod nobis quas quasi.
 								Eaque repellat recusandae ad laudantium tempore
 								consequatur consequuntur omnis ullam maxime
 								tenetur.
-							</p>
+							</Typography>
 
-							<button className='hover:bg-secondary hover:border-transparent border-b-2 border-primary font-semibold mt-6 p-3 rounded-lg text-sm hover:text-accent uppercase max-w-max'>
-								Read More
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+							<BorderButton
+								sxProps={{
+									bgcolor: "transparent",
+									borderColor: "primary.main",
+									color: "primary.main",
+								}}
+								text='Read More'
+							/>
+						</Box>
+					</Box>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 

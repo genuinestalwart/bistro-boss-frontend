@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import carouselSlide1 from "../../assets/home/carouselSlide1.jpg";
 import carouselSlide2 from "../../assets/home/carouselSlide2.jpg";
 import carouselSlide3 from "../../assets/home/carouselSlide3.png";
@@ -18,10 +19,10 @@ const carouselItems = [
 
 const Hero = () => {
 	return (
-		<section>
+		<Box component='section'>
 			<Carousel
-				className='[&_li.dot]:bg-primary [&_li.dot.selected]:bg-accent [&_ul.thumbs]:flex [&_ul.thumbs]:items-center [&_ul.thumbs]:justify-center [&_ul.control-dots]:my-12 [&_div.carousel_li.dot]:opacity-100 [&_li.dot]:rounded-full [&_ul.control-dots]:z-10'
 				autoPlay
+				className='[&_li.dot]:bg-primary [&_li.dot.selected]:bg-accent [&_ul.thumbs]:flex [&_ul.thumbs]:items-center [&_ul.thumbs]:justify-center [&_ul.control-dots]:my-12 [&_div.carousel_li.dot]:opacity-100 [&_li.dot]:rounded-full [&_ul.control-dots]:z-10'
 				emulateTouch
 				infiniteLoop
 				interval={4000}
@@ -29,16 +30,19 @@ const Hero = () => {
 				showStatus={false}
 				stopOnHover={false}>
 				{carouselItems.map((carouselItem, index) => (
-					<div key={index}>
+					<Box
+						height='100vh'
+						key={index}
+						maxHeight={{ "2xl": "810px" }}>
 						<img
+							alt='hero banner'
 							className='block h-full object-center object-cover w-full'
 							src={carouselItem.image}
-							alt='hero banner'
 						/>
-					</div>
+					</Box>
 				))}
 			</Carousel>
-		</section>
+		</Box>
 	);
 };
 

@@ -3,40 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--primary: 255 255 255;
-		--secondary: 21 21 21;
-		--neutral: 115 115 115;
-		--accent: 255 145 0;
-	}
 	* {
-		@apply transition-all;
+		@apply box-border transition-all;
 		&::-webkit-scrollbar {
-			@apply w-1;
+			@apply w-2;
 		}
 		&::-webkit-scrollbar-thumb {
 			@apply bg-accent;
 		}
 	}
-	body {
-		&::-webkit-scrollbar {
-			@apply w-2;
-		}
-		&::-webkit-scrollbar-track {
-			@apply bg-primary;
-		}
-		font-family: "Inter Variable", sans-serif;
-	}
-	.font-cinzel {
-		font-family: "Cinzel Variable", sans-serif;
-	}
-	.bg-primary {
+	.bg-primary,
+	.bg-accent {
 		@apply text-secondary;
 	}
 	.bg-secondary {
 		@apply text-primary;
-	}
-	.bg-accent {
-		@apply text-secondary;
 	}
 }

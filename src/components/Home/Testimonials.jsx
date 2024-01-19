@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import HomeTitles from "../shared/HomeTitles";
+import { useEffect, useState } from "react";
+import SectionTitles from "../shared/SectionTitles";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+import { Box, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
+import Quote from "../shared/icons/Quote";
 
 const starStyles = {
 	itemShapes: RoundedStar,
 	activeFillColor: "rgb(255, 145, 0)",
-	inactiveFillColor: "rgb(115, 115, 115)",
+	inactiveFillColor: grey[600],
 };
 
 const Testimonials = () => {
@@ -26,25 +26,29 @@ const Testimonials = () => {
 	}, []);
 
 	return (
-		<section className='mx-auto text-center w-4/5 md:w-3/4'>
-			<HomeTitles
+		<Box
+			className='space-y-8'
+			component='section'
+			mx='auto'
+			width={{ xs: "80%", md: "75%" }}>
+			<SectionTitles
 				smallTitle='What Our Clients Say'
 				bigTitle='Testimonials'
-				borderColor=''
 			/>
 
 			<Swiper
-				className='mt-8'
 				autoplay={{
 					delay: 4000,
 					disableOnInteraction: false,
 				}}
-				// loop={true}
 				modules={[Autoplay, Navigation]}
 				navigation={true}>
 				{reviews.map((review) => (
 					<SwiperSlide key={review._id}>
-						<div className='flex flex-col items-center'>
+						<Box
+							alignItems='center'
+							display='flex'
+							flexDirection='column'>
 							<Rating
 								className='[&.rr--group]:w-3/5 md:[&.rr--group]:w-1/5'
 								itemStyles={starStyles}
@@ -52,25 +56,35 @@ const Testimonials = () => {
 								value={review.rating}
 							/>
 
-							<div className='flex justify-center my-6 w-1/5'>
-								<FontAwesomeIcon
-									className='text-7xl md:text-8xl'
-									icon={faQuoteLeft}
-								/>
-							</div>
+							<Box
+								display='flex'
+								justifyContent='center'
+								my={6}
+								width='20%'>
+								<Quote />
+							</Box>
 
-							<p className='text-sm w-3/5 md:w-3/4'>
+							<Typography
+								textAlign='center'
+								variant='body2'
+								width={{ xs: "60%", md: "75%" }}>
 								{review.details}
-							</p>
+							</Typography>
 
-							<h3 className='font-medium mt-1 text-accent text-lg uppercase'>
+							<Typography
+								color='accent.main'
+								component='h3'
+								fontWeight={500}
+								mt={2}
+								textTransform='uppercase'
+								variant='h6'>
 								{review.name}
-							</h3>
-						</div>
+							</Typography>
+						</Box>
 					</SwiperSlide>
 				))}
 			</Swiper>
-		</section>
+		</Box>
 	);
 };
 
