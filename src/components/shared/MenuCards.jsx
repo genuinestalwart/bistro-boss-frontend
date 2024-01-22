@@ -26,6 +26,9 @@ const MenuCards = (props) => {
 					key={index}
 					sx={{
 						boxShadow: 2,
+						"&.MuiPaper-root": {
+							bgcolor: grey[100],
+						},
 					}}>
 					<CardActionArea component='div'>
 						<CardMedia
@@ -35,16 +38,20 @@ const MenuCards = (props) => {
 						/>
 
 						<CardContent
+							className='space-y-2'
 							sx={{ bgcolor: grey[100], textAlign: "center" }}>
 							<Typography
+								className='line-clamp-2'
 								component='h3'
 								fontWeight={600}
-								variant='h6'>
+								variant='body1'>
 								{card.name}
 							</Typography>
 
-							<Typography variant='body2'>
-								{card.ingredients}
+							<Typography
+								className='line-clamp-3'
+								variant='body2'>
+								{card.recipe}
 							</Typography>
 						</CardContent>
 

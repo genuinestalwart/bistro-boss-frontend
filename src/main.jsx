@@ -8,6 +8,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import RootLayout from "./pages/layout";
 import HomePage from "./pages/page";
 import MenuPage from "./pages/menu/page";
+import ShopPage from "./pages/shop.jsx/page";
+import ContactUsPage from "./pages/contact-us/page";
 
 const router = createBrowserRouter([
 	{
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
 			{
 				path: "/menu",
 				element: <MenuPage />,
+			},
+			{
+				path: "/shop",
+				element: <ShopPage />,
+			},
+			{
+				path: "/contact-us",
+				element: <ContactUsPage />,
 			},
 		],
 	},

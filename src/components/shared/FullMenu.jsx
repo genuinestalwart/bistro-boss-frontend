@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import MenuItems from "../shared/MenuItems";
-import SectionTitles from "../shared/SectionTitles";
 import { Box } from "@mui/material";
 import BorderButton from "../shared/BorderButton";
 
-const PopularMenu = () => {
+const FullMenu = (props) => {
+	const { category } = props;
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {
 		fetch("menu.json")
 			.then((res) => res.json())
 			.then((data) =>
-				setMenu(data.filter((item) => item.type === "popular"))
+				setMenu(
+					data.filter(
+						(item) =>
+							item.type === "none" && item.category === category
+					)
+				)
 			);
-	}, []);
+	}, [category]);
 
 	return (
 		<Box
@@ -21,7 +26,6 @@ const PopularMenu = () => {
 			component='section'
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
-			<SectionTitles smallTitle='Check it out' bigTitle='From Our Menu' />
 			<MenuItems items={menu} />
 
 			<BorderButton
@@ -31,10 +35,10 @@ const PopularMenu = () => {
 					display: "block",
 					mx: "auto",
 				}}
-				text='View Full Menu'
+				text='Order Your Favorite Food'
 			/>
 		</Box>
 	);
 };
 
-export default PopularMenu;
+export default FullMenu;

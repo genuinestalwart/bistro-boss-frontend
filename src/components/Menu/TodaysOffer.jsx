@@ -4,14 +4,14 @@ import SectionTitles from "../shared/SectionTitles";
 import { Box } from "@mui/material";
 import BorderButton from "../shared/BorderButton";
 
-const PopularMenu = () => {
+const TodaysOffer = () => {
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {
 		fetch("menu.json")
 			.then((res) => res.json())
 			.then((data) =>
-				setMenu(data.filter((item) => item.type === "popular"))
+				setMenu(data.filter((item) => item.type === "today's offer"))
 			);
 	}, []);
 
@@ -21,7 +21,7 @@ const PopularMenu = () => {
 			component='section'
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
-			<SectionTitles smallTitle='Check it out' bigTitle='From Our Menu' />
+			<SectionTitles smallTitle="Don't miss" bigTitle="Today's Offer" />
 			<MenuItems items={menu} />
 
 			<BorderButton
@@ -31,10 +31,10 @@ const PopularMenu = () => {
 					display: "block",
 					mx: "auto",
 				}}
-				text='View Full Menu'
+				text='Order Your Favorite Food'
 			/>
 		</Box>
 	);
 };
 
-export default PopularMenu;
+export default TodaysOffer;

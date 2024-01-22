@@ -13,13 +13,18 @@ const MenuItems = (props) => {
 				md: "repeat(2, 1fr)",
 			}}>
 			{items.map((item, index) => (
-				<Box alignItems='start' display='flex' key={index}>
+				<Box
+					alignItems='start'
+					display='flex'
+					justifyContent='space-between'
+					key={index}>
 					<Box width='20%'>
 						<MenuIcon />
 					</Box>
 
-					<Box className='space-y-2' pl={5} pr={1} width='75%'>
+					<Box className='space-y-2' width='60%'>
 						<Typography
+							className='line-clamp-1'
 							component='h3'
 							fontFamily='"Cinzel Variable", sans-serif'
 							fontWeight={500}
@@ -28,7 +33,10 @@ const MenuItems = (props) => {
 							{item.name}
 						</Typography>
 
-						<Typography fontWeight={300} variant='body2'>
+						<Typography
+							className='line-clamp-3'
+							fontWeight={300}
+							variant='body2'>
 							{item.recipe}
 						</Typography>
 					</Box>
