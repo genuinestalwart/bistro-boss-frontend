@@ -6,10 +6,15 @@ import Hero from "../components/Home/Hero";
 import OrderOnline from "../components/Home/OrderOnline";
 import Recommended from "../components/Home/Recommended";
 import Testimonials from "../components/Home/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
 	return (
 		<>
+			<Helmet>
+				<title>Bistro Boss | Home</title>
+			</Helmet>
+
 			<Hero />
 			<OrderOnline />
 			<AboutService />

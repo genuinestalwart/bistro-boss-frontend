@@ -1,14 +1,13 @@
 import { Box, Typography } from "@mui/material";
 
-const MenuBanner = (props) => {
-	const { bgImage, title, description } = props;
-
+const MenuBanner = ({ bgImage, title, description }) => {
 	return (
 		<Box
 			className={bgImage}
 			component='section'
 			py={{ xs: 12, md: 24 }}
 			sx={{
+				backgroundAttachment: "fixed",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",

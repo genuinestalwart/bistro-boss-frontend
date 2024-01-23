@@ -3,8 +3,7 @@ import MenuItems from "../shared/MenuItems";
 import { Box } from "@mui/material";
 import BorderButton from "../shared/BorderButton";
 
-const FullMenu = (props) => {
-	const { category } = props;
+const FullMenu = ({ category }) => {
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {

@@ -10,9 +10,7 @@ import {
 import { grey } from "@mui/material/colors";
 import BorderButton from "./BorderButton";
 
-const MenuCards = (props) => {
-	const { cards } = props;
-
+const MenuCards = ({ cards }) => {
 	return (
 		<Box
 			display='grid'

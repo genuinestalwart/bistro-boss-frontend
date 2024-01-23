@@ -10,6 +10,7 @@ import HomePage from "./pages/page";
 import MenuPage from "./pages/menu/page";
 import ShopPage from "./pages/shop.jsx/page";
 import ContactUsPage from "./pages/contact-us/page";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
 	{
@@ -77,8 +78,10 @@ theme = createTheme(theme, {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<RouterProvider router={router} />
-		</ThemeProvider>
+		<HelmetProvider>
+			<ThemeProvider theme={theme}>
+				<RouterProvider router={router} />
+			</ThemeProvider>
+		</HelmetProvider>
 	</React.StrictMode>
 );

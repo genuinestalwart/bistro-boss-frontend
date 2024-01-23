@@ -1,9 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import MenuIcon from "./icons/MenuIcon";
 
-const MenuItems = (props) => {
-	const { items } = props;
-
+const MenuItems = ({ items }) => {
 	return (
 		<Box
 			display='grid'

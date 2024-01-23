@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import TabChanger from "../../components/Shop/TabChanger";
 import TabContent from "../../components/Shop/TabContent";
 import Heading from "../../components/shared/Heading";
@@ -31,6 +32,10 @@ const ShopPage = () => {
 
 	return (
 		<>
+			<Helmet>
+				<title>Bistro Boss | Shop</title>
+			</Helmet>
+
 			<Heading
 				bgImage='bg-[url("./assets/shop/banner.jpg")]'
 				title='Our Shop'

@@ -9,9 +9,7 @@ const navItems = [
 	{ path: "/shop", pathName: "Our Shop" },
 ];
 
-const Navbar = (props) => {
-	const { sidebarOpen, setSidebarOpen } = props;
-
+const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 	const navbar = navItems.map((navItem, index) => (
 		<NavLink
 			className={({ isActive }) =>

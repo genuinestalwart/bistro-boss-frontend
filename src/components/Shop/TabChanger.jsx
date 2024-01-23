@@ -7,9 +7,7 @@ const tabItems = [
 	{ value: "soup", label: "Soups" },
 ];
 
-const TabChanger = (props) => {
-	const { activeTab, setActiveTab } = props;
-
+const TabChanger = ({ activeTab, setActiveTab }) => {
 	return (
 		<Tabs
 			aria-label='shop tabs'

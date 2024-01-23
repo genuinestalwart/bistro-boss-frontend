@@ -4,17 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import { Rating, RoundedStar } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
-import { Box, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Box, Rating, Typography } from "@mui/material";
 import Quote from "../shared/icons/Quote";
-
-const starStyles = {
-	itemShapes: RoundedStar,
-	activeFillColor: "rgb(255, 145, 0)",
-	inactiveFillColor: grey[600],
-};
 
 const Testimonials = () => {
 	const [reviews, setReviews] = useState([]);
@@ -50,9 +41,9 @@ const Testimonials = () => {
 							display='flex'
 							flexDirection='column'>
 							<Rating
-								className='[&.rr--group]:w-3/5 md:[&.rr--group]:w-1/5'
-								itemStyles={starStyles}
+								name='reviews'
 								readOnly
+								size='large'
 								value={review.rating}
 							/>
 

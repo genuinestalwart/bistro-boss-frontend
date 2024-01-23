@@ -3,8 +3,7 @@ import MenuCards from "../shared/MenuCards";
 import { useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
-const TabContent = (props) => {
-	const { activeTab } = props;
+const TabContent = ({ activeTab }) => {
 	const [loading, setLoading] = useState(true);
 	const [menu, setMenu] = useState([]);
 	const [page, setPage] = useState(1);

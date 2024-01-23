@@ -1,8 +1,6 @@
 import { Button } from "@mui/material";
 
-const BorderButton = (props) => {
-	const { sxProps, text } = props;
-
+const BorderButton = ({ sxProps, text }) => {
 	return (
 		<Button
 			sx={{

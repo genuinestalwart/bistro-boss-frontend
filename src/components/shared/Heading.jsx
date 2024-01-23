@@ -1,8 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-const Heading = (props) => {
-	const { bgImage, title } = props;
-
+const Heading = ({ bgImage, title }) => {
 	return (
 		<Box
 			alignItems='center'

@@ -1,8 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
 
-const SectionTitles = (props) => {
-	const { smallTitle, bigTitle } = props;
-
+const SectionTitles = ({ smallTitle, bigTitle }) => {
 	const separator = (
 		<Divider
 			aria-hidden={true}
