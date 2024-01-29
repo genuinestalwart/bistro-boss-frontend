@@ -8,7 +8,7 @@ import {
 	Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import BorderButton from "./BorderButton";
+import BorderButton from "@/components/shared/BorderButton";
 
 const MenuCards = ({ cards }) => {
 	return (
@@ -28,7 +28,14 @@ const MenuCards = ({ cards }) => {
 							bgcolor: grey[100],
 						},
 					}}>
-					<CardActionArea component='div'>
+					<CardActionArea
+						component='div'
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							height: "100%",
+							justifyContent: "space-between",
+						}}>
 						<CardMedia
 							alt={card.name}
 							component='img'

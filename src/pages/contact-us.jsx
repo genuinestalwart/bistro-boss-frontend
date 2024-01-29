@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import ContactForm from "../../components/ContactUs/ContactForm";
-import OurLocation from "../../components/ContactUs/OurLocation";
-import Heading from "../../components/shared/Heading";
+import ContactForm from "@/components/ContactUs/ContactForm";
+import OurLocation from "@/components/ContactUs/OurLocation";
+import Heading from "@/components/shared/Heading";
 
 const ContactUsPage = () => {
 	return (
@@ -11,7 +11,7 @@ const ContactUsPage = () => {
 			</Helmet>
 
 			<Heading
-				bgImage='bg-[url("./assets/contact-us/banner.jpg")]'
+				bgImage='bg-[url("./assets/banners/contact-us.jpg")]'
 				title='Contact Us'
 			/>
 

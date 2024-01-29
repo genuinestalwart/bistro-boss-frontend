@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import TabChanger from "../../components/Shop/TabChanger";
-import TabContent from "../../components/Shop/TabContent";
-import Heading from "../../components/shared/Heading";
+import TabChanger from "@/components/Shop/TabChanger";
+import TabContent from "@/components/Shop/TabContent";
+import Heading from "@/components/shared/Heading";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,8 +12,6 @@ const ShopPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log(location);
-
 		if (!location.search) {
 			navigate("/shop?category=dessert", {
 				replace: true,
@@ -37,7 +35,7 @@ const ShopPage = () => {
 			</Helmet>
 
 			<Heading
-				bgImage='bg-[url("./assets/shop/banner.jpg")]'
+				bgImage='bg-[url("./assets/banners/shop.jpg")]'
 				title='Our Shop'
 			/>
 

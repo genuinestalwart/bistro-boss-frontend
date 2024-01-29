@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import Facebook from "./icons/Facebook";
-import Instagram from "./icons/Instagram";
-import Twitter from "./icons/Twitter";
+import Facebook from "@/components/shared/icons/Facebook";
+import Instagram from "@/components/shared/icons/Instagram";
+import Twitter from "@/components/shared/icons/Twitter";
 
 const icons = [
 	{ component: <Facebook />, label: "facebook" },
@@ -63,13 +63,13 @@ const Footer = () => {
 							justifyContent='center'>
 							{icons.map((icon, index) => (
 								<IconButton
+									aria-label={icon.label}
 									key={index}
 									sx={{
 										"&:hover": {
 											bgcolor: "secondary.light",
 										},
-									}}
-									aria-label={icon.label}>
+									}}>
 									{icon.component}
 								</IconButton>
 							))}

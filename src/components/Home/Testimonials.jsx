@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import SectionTitles from "../shared/SectionTitles";
+import SectionTitles from "@/components/shared/SectionTitles";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Box, Rating, Typography } from "@mui/material";
-import Quote from "../shared/icons/Quote";
+import Quote from "@/components/shared/icons/Quote";
 
 const Testimonials = () => {
 	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
-		fetch("reviews.json")
+		fetch("http://localhost:5000/reviews")
 			.then((res) => res.json())
 			.then((data) => setReviews(data));
 	}, []);
@@ -34,8 +34,8 @@ const Testimonials = () => {
 				}}
 				modules={[Autoplay, Navigation]}
 				navigation={true}>
-				{reviews.map((review) => (
-					<SwiperSlide key={review._id}>
+				{reviews.map((review, index) => (
+					<SwiperSlide key={index}>
 						<Box
 							alignItems='center'
 							display='flex'

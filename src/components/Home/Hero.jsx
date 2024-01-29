@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
-import carouselSlide1 from "../../assets/home/carouselSlide1.jpg";
-import carouselSlide2 from "../../assets/home/carouselSlide2.jpg";
-import carouselSlide3 from "../../assets/home/carouselSlide3.png";
-import carouselSlide4 from "../../assets/home/carouselSlide4.jpg";
-import carouselSlide5 from "../../assets/home/carouselSlide5.png";
-import carouselSlide6 from "../../assets/home/carouselSlide6.png";
+import carouselSlide1 from "@/assets/home/carouselSlide1.jpg";
+import carouselSlide2 from "@/assets/home/carouselSlide2.jpg";
+import carouselSlide3 from "@/assets/home/carouselSlide3.png";
+import carouselSlide4 from "@/assets/home/carouselSlide4.jpg";
+import carouselSlide5 from "@/assets/home/carouselSlide5.png";
+import carouselSlide6 from "@/assets/home/carouselSlide6.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 

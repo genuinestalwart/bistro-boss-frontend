@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import Navbar from "./Navbar";
+import Navbar from "@/components/shared/Navbar";
 
 const Header = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);

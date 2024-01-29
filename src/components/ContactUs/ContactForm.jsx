@@ -1,5 +1,5 @@
 import { grey } from "@mui/material/colors";
-import SectionTitles from "../shared/SectionTitles";
+import SectionTitles from "@/components/shared/SectionTitles";
 import { Box, Button, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
 

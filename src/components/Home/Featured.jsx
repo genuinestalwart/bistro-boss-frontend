@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import featuredFood from "../../assets/home/featured.jpg";
-import SectionTitles from "../shared/SectionTitles";
-import BorderButton from "../shared/BorderButton";
+import featuredFood from "@/assets/home/featured.jpg";
+import SectionTitles from "@/components/shared/SectionTitles";
+import BorderButton from "@/components/shared/BorderButton";
 
 const Featured = () => {
 	return (
 		<Box
-			className='bg-[url("./assets/home/banner.jpg")]'
+			className='bg-[url("./assets/banners/home.jpg")]'
 			color='primary.main'
 			component='section'
 			sx={{
@@ -31,7 +31,7 @@ const Featured = () => {
 						justifyContent='space-between'>
 						<img
 							alt='featured food'
-							className='h-auto rounded w-full md:w-[45%]'
+							className='block h-auto rounded w-full md:w-[45%]'
 							src={featuredFood}
 						/>
 

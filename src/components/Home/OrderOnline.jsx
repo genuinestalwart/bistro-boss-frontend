@@ -4,12 +4,12 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
-import swiperSlide1 from "../../assets/home/swiperSlide1.jpg";
-import swiperSlide2 from "../../assets/home/swiperSlide2.jpg";
-import swiperSlide3 from "../../assets/home/swiperSlide3.jpg";
-import swiperSlide4 from "../../assets/home/swiperSlide4.jpg";
-import swiperSlide5 from "../../assets/home/swiperSlide5.jpg";
-import SectionTitles from "../shared/SectionTitles";
+import swiperSlide1 from "@/assets/home/swiperSlide1.jpg";
+import swiperSlide2 from "@/assets/home/swiperSlide2.jpg";
+import swiperSlide3 from "@/assets/home/swiperSlide3.jpg";
+import swiperSlide4 from "@/assets/home/swiperSlide4.jpg";
+import swiperSlide5 from "@/assets/home/swiperSlide5.jpg";
+import SectionTitles from "@/components/shared/SectionTitles";
 import { Box, Typography } from "@mui/material";
 
 const swiperItems = [
@@ -36,10 +36,10 @@ const OrderOnline = () => {
 			/>
 
 			<Swiper
-				// autoplay={{
-				// 	delay: 4000,
-				// 	disableOnInteraction: false,
-				// }}
+				autoplay={{
+					delay: 4000,
+					disableOnInteraction: false,
+				}}
 				breakpoints={{
 					768: { slidesPerView: 4 },
 				}}
@@ -55,7 +55,7 @@ const OrderOnline = () => {
 					<SwiperSlide className='relative' key={index}>
 						<img
 							alt={swiperItem.name}
-							className='rounded-md w-full'
+							className='block rounded-md w-full'
 							src={swiperItem.image}
 						/>
 

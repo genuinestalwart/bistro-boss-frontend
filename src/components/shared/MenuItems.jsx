@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import MenuIcon from "./icons/MenuIcon";
+import MenuIcon from "@/components/shared/icons/MenuIcon";
 
 const MenuItems = ({ items }) => {
 	return (

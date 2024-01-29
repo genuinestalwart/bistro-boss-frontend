@@ -1,7 +1,7 @@
-import Heading from "../../components/shared/Heading";
-import TodaysOffer from "../../components/Menu/TodaysOffer";
-import MenuBanner from "../../components/shared/MenuBanner";
-import FullMenu from "../../components/shared/FullMenu";
+import Heading from "@/components/shared/Heading";
+import TodaysOffer from "@/components/Menu/TodaysOffer";
+import MenuBanner from "@/components/shared/MenuBanner";
+import FullMenu from "@/components/shared/FullMenu";
 import { Helmet } from "react-helmet-async";
 
 const MenuPage = () => {
@@ -12,7 +12,7 @@ const MenuPage = () => {
 			</Helmet>
 
 			<Heading
-				bgImage='bg-[url("./assets/menu/banner.jpg")]'
+				bgImage='bg-[url("./assets/banners/menu.jpg")]'
 				title='Our Menu'
 			/>
 

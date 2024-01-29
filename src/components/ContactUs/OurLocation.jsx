@@ -1,5 +1,5 @@
 import { LocationOn, PhoneInTalk, WatchLater } from "@mui/icons-material";
-import SectionTitles from "../shared/SectionTitles";
+import SectionTitles from "@/components/shared/SectionTitles";
 import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 

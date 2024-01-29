@@ -1,5 +1,5 @@
 import { Box, Pagination, PaginationItem, Skeleton } from "@mui/material";
-import MenuCards from "../shared/MenuCards";
+import MenuCards from "@/components/shared/MenuCards";
 import { useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
@@ -10,7 +10,7 @@ const TabContent = ({ activeTab }) => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch("menu.json")
+		fetch("http://localhost:5000/menu")
 			.then((res) => res.json())
 			.then((data) => {
 				setMenu(data.filter((item) => item.category === activeTab));

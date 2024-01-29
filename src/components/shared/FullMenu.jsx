@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import MenuItems from "../shared/MenuItems";
+import MenuItems from "@/components/shared/MenuItems";
 import { Box } from "@mui/material";
-import BorderButton from "../shared/BorderButton";
+import BorderButton from "@/components/shared/BorderButton";
 
 const FullMenu = ({ category }) => {
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {
-		fetch("menu.json")
+		fetch("http://localhost:5000/menu")
 			.then((res) => res.json())
 			.then((data) =>
 				setMenu(

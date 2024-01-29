@@ -1,16 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "@/index.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/cinzel";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+	createBrowserRouter,
+	RouterProvider,
+	ScrollRestoration,
+} from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
-import RootLayout from "./pages/layout";
-import HomePage from "./pages/page";
-import MenuPage from "./pages/menu/page";
-import ShopPage from "./pages/shop.jsx/page";
-import ContactUsPage from "./pages/contact-us/page";
 import { HelmetProvider } from "react-helmet-async";
+import RootLayout from "@/layouts/RootLayout";
+import DashLayout from "@/layouts/DashLayout";
+import HomePage from "@/pages/home";
+import MenuPage from "@/pages/menu";
+import ShopPage from "@/pages/shop";
+import ContactUsPage from "@/pages/contact-us";
+import SignInPage from "@/pages/signin";
+import SignUpPage from "@/pages/signup";
+import DashboardPage from "@/pages/dashboard";
+import AuthProvider from "@/providers/AuthProvider";
+import ToastProvider from "@/providers/ToastProvider";
+import NotFound from "@/components/shared/NotFound";
 
 const router = createBrowserRouter([
 	{
@@ -34,6 +45,28 @@ const router = createBrowserRouter([
 				element: <ContactUsPage />,
 			},
 		],
+	},
+	{
+		path: "/dashboard",
+		element: <DashLayout />,
+		children: [
+			{
+				path: "/dashboard",
+				element: <DashboardPage />,
+			},
+		],
+	},
+	{
+		path: "/signin",
+		element: <SignInPage />,
+	},
+	{
+		path: "/signup",
+		element: <SignUpPage />,
+	},
+	{
+		path: "*",
+		element: <NotFound />,
 	},
 ]);
 
@@ -78,10 +111,16 @@ theme = createTheme(theme, {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<HelmetProvider>
-			<ThemeProvider theme={theme}>
-				<RouterProvider router={router} />
-			</ThemeProvider>
-		</HelmetProvider>
+		<AuthProvider>
+			<ToastProvider>
+				<HelmetProvider>
+					<ThemeProvider theme={theme}>
+						<RouterProvider router={router}>
+							<ScrollRestoration />
+						</RouterProvider>
+					</ThemeProvider>
+				</HelmetProvider>
+			</ToastProvider>
+		</AuthProvider>
 	</React.StrictMode>
 );

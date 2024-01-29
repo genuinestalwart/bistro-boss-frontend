@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
-import SectionTitles from "../shared/SectionTitles";
-import MenuCards from "../shared/MenuCards";
+import SectionTitles from "@/components/shared/SectionTitles";
+import MenuCards from "@/components/shared/MenuCards";
 import { useEffect, useState } from "react";
 
 const Recommended = () => {
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {
-		fetch("menu.json")
+		fetch("http://localhost:5000/menu")
 			.then((res) => res.json())
 			.then((data) =>
 				setMenu(data.filter((item) => item.type === "recommended"))
