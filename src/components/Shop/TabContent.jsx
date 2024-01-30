@@ -10,7 +10,7 @@ const TabContent = ({ activeTab }) => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch("http://localhost:5000/menu")
+		fetch("https://gs-bistro-boss-backend.vercel.app/menu")
 			.then((res) => res.json())
 			.then((data) => {
 				setMenu(data.filter((item) => item.category === activeTab));

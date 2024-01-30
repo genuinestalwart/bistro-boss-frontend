@@ -7,7 +7,7 @@ const Recommended = () => {
 	const [menu, setMenu] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost:5000/menu")
+		fetch("https://gs-bistro-boss-backend.vercel.app/menu")
 			.then((res) => res.json())
 			.then((data) =>
 				setMenu(data.filter((item) => item.type === "recommended"))
