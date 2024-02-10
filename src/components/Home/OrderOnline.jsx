@@ -31,8 +31,9 @@ const OrderOnline = () => {
 				md: "75%",
 			}}>
 			<SectionTitles
-				smallTitle='From 11:00am to 10:00pm'
 				bigTitle='Order Online'
+				component='h1'
+				smallTitle='From 11:00am to 10:00pm'
 			/>
 
 			<Swiper

@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
 
-const SectionTitles = ({ smallTitle, bigTitle }) => {
+const SectionTitles = ({ bigTitle, component = "h2", smallTitle }) => {
 	const separator = (
 		<Divider
 			aria-hidden={true}
@@ -26,7 +26,7 @@ const SectionTitles = ({ smallTitle, bigTitle }) => {
 			{separator}
 
 			<Typography
-				component='h2'
+				component={component}
 				py={3}
 				textTransform='uppercase'
 				variant='h4'>

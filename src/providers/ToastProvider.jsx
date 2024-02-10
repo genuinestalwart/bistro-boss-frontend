@@ -4,11 +4,11 @@ export const ToastContext = createContext(null);
 
 const ToastProvider = ({ children }) => {
 	const [open, setOpen] = useState(false);
-	const [message, setMessage] = useState({});
+	const [data, setData] = useState({});
 
-	const toast = (m) => {
+	const toast = (message) => {
 		setOpen(true);
-		return setMessage(m);
+		return setData(message);
 	};
 
 	const handleClose = (event, reason) => {
@@ -25,7 +25,7 @@ const ToastProvider = ({ children }) => {
 			{children}
 
 			<Snackbar
-				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+				anchorOrigin={data.position}
 				autoHideDuration={4000}
 				onClose={handleClose}
 				open={open}
@@ -35,10 +35,10 @@ const ToastProvider = ({ children }) => {
 				TransitionComponent={Slide}>
 				<Alert
 					onClose={handleClose}
-					severity='error'
+					severity={data.type}
 					variant='standard'>
-					<AlertTitle>{message.title}</AlertTitle>
-					{message.description}
+					<AlertTitle>{data.title}</AlertTitle>
+					{data.description}
 				</Alert>
 			</Snackbar>
 		</ToastContext.Provider>

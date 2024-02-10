@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import featuredFood from "@/assets/home/featured.jpg";
 import SectionTitles from "@/components/shared/SectionTitles";
-import BorderButton from "@/components/shared/BorderButton";
+import BorderButton from "@/components/shared/buttons/BorderButton";
 
 const Featured = () => {
 	return (
@@ -21,8 +21,8 @@ const Featured = () => {
 					mx='auto'
 					width={{ xs: "80%", md: "75%" }}>
 					<SectionTitles
-						smallTitle='Check it out'
 						bigTitle='From Our Menu'
+						smallTitle='Check it out'
 					/>
 
 					<Box

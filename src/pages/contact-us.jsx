@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet-async";
 import ContactForm from "@/components/ContactUs/ContactForm";
 import OurLocation from "@/components/ContactUs/OurLocation";
 import Heading from "@/components/shared/Heading";
+import { Box } from "@mui/material";
+import SectionTitles from "@/components/shared/SectionTitles";
 
 const ContactUsPage = () => {
 	return (
@@ -16,7 +18,22 @@ const ContactUsPage = () => {
 			/>
 
 			<OurLocation />
-			<ContactForm />
+
+			<Box
+				className='space-y-8'
+				component='section'
+				mx='auto'
+				width={{
+					xs: "80%",
+					md: "75%",
+				}}>
+				<SectionTitles
+					bigTitle='Contact Form'
+					smallTitle='Send us a message'
+				/>
+
+				<ContactForm />
+			</Box>
 		</>
 	);
 };

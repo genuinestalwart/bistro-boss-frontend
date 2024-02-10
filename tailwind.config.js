@@ -1,7 +1,7 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+	content: ["./index.html", "./src/**/*.{js,jsx}"],
 	theme: {
 		container: {
 			center: true,
@@ -11,7 +11,7 @@ export default {
 		},
 		extend: {
 			colors: {
-				accent: "#ff9100",
+				accent: "#ffbb5c",
 				primary: "#ffffff",
 				secondary: "#151515",
 			},

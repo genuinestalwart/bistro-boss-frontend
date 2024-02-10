@@ -1,7 +1,7 @@
 import Heading from "@/components/shared/Heading";
 import TodaysOffer from "@/components/Menu/TodaysOffer";
-import MenuBanner from "@/components/shared/MenuBanner";
-import FullMenu from "@/components/shared/FullMenu";
+import MenuBanner from "@/components/Menu/MenuBanner";
+import FullMenu from "@/components/Menu/FullMenu";
 import { Helmet } from "react-helmet-async";
 
 const MenuPage = () => {

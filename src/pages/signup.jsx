@@ -1,13 +1,14 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import LoginLayout from "@/layouts/LoginLayout";
 import { Helmet } from "react-helmet-async";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import { ToastContext } from "@/providers/ToastProvider";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import LoginButton from "@/components/login/LoginButton";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const fieldItems = [
+const fieldProps = [
 	{
 		id: "name",
 		label: "Name",
@@ -37,11 +38,10 @@ const fieldItems = [
 ];
 
 const SignUpPage = () => {
-	const [displayName, setDisplayName] = useState("");
+	const location = useLocation();
 	const navigate = useNavigate();
-	const { toast } = useContext(ToastContext);
-	const { createUser, updateUser, user, verifyEmail } =
-		useContext(AuthContext);
+	const axiosPublic = useAxiosPublic();
+	const { createUser, updateUser, verifyEmail } = useContext(AuthContext);
 
 	const {
 		register,
@@ -50,28 +50,22 @@ const SignUpPage = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		const { name, email, password } = data;
-		setDisplayName(name);
-		createUser(email, password).catch((error) => {
-			toast({
-				title: "Email Address Already Taken!",
-				description:
-					"Someone has already signed up using this email address. If that's you, please sign in instead.",
+		createUser(data.email, data.password).then(async (res) => {
+			await updateUser({ displayName: data.name });
+			// await verifyEmail();
+
+			await axiosPublic.post("/users", {
+				email: res.user?.email,
+				name: res.user?.displayName,
+				uid: res.user?.uid,
+			});
+
+			navigate("/dashboard", {
+				replace: true,
+				state: location.state,
 			});
 		});
 	};
-
-	useEffect(() => {
-		const setUpAccount = async (displayName) => {
-			await updateUser({ displayName });
-			// await verifyEmail();
-			navigate("/dashboard");
-		};
-
-		if (user) {
-			setUpAccount(displayName);
-		}
-	}, [user]);
 
 	return (
 		<LoginLayout login={false}>
@@ -84,7 +78,7 @@ const SignUpPage = () => {
 				component='form'
 				onSubmit={handleSubmit(onSubmit)}
 				px={{ xs: 6, md: 0 }}>
-				{fieldItems.map((fieldItem, index) => (
+				{fieldProps.map((fieldItem, index) => (
 					<TextField
 						autoComplete='off'
 						color='accent'
@@ -104,25 +98,7 @@ const SignUpPage = () => {
 					/>
 				))}
 
-				<Button
-					color='accent'
-					size='large'
-					sx={{
-						color: "secondary.main",
-						display: "flex",
-						fontFamily: "inherit",
-						fontWeight: 600,
-						mx: "auto",
-						width: "100%",
-						"&:hover": {
-							bgcolor: "secondary.main",
-							color: "accent.main",
-						},
-					}}
-					type='submit'
-					variant='contained'>
-					Sign Up
-				</Button>
+				<LoginButton text='Sign Up' />
 			</Box>
 		</LoginLayout>
 	);

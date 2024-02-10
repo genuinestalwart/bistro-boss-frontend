@@ -1,10 +1,10 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Menu } from "@mui/icons-material";
 import Navbar from "@/components/shared/Navbar";
 
 const Header = () => {
-	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [navbarOpen, setNavbarOpen] = useState(false);
 
 	return (
 		<Box
@@ -16,14 +16,14 @@ const Header = () => {
 			justifyContent={{ xs: "space-around", md: "space-between" }}
 			maxWidth={{ "2xl": "1440px" }}
 			px={{ md: 8 }}
-			position='absolute'
+			position='fixed'
 			width='100%'>
 			<IconButton
 				aria-label='open drawer'
 				color='inherit'
-				onClick={() => setSidebarOpen(!sidebarOpen)}
+				onClick={() => setNavbarOpen(!navbarOpen)}
 				sx={{ display: { md: "none" } }}>
-				<MenuIcon fontSize='large' />
+				<Menu fontSize='large' />
 			</IconButton>
 
 			<Box textTransform='uppercase'>
@@ -44,7 +44,7 @@ const Header = () => {
 				</Typography>
 			</Box>
 
-			<Navbar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
+			<Navbar setNavbarOpen={setNavbarOpen} navbarOpen={navbarOpen} />
 		</Box>
 	);
 };

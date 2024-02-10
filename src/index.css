@@ -6,7 +6,7 @@
 	* {
 		@apply box-border transition-all;
 		&::-webkit-scrollbar {
-			@apply w-2;
+			@apply h-2 w-2;
 		}
 		&::-webkit-scrollbar-thumb {
 			@apply bg-accent;

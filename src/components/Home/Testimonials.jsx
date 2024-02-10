@@ -6,15 +6,15 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Box, Rating, Typography } from "@mui/material";
 import Quote from "@/components/shared/icons/Quote";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 const Testimonials = () => {
 	const [reviews, setReviews] = useState([]);
+	const axiosPublic = useAxiosPublic();
 
 	useEffect(() => {
-		fetch("https://gs-bistro-boss-backend.vercel.app/reviews")
-			.then((res) => res.json())
-			.then((data) => setReviews(data));
-	}, []);
+		axiosPublic.get("/reviews").then(({ data }) => setReviews(data));
+	}, [axiosPublic]);
 
 	return (
 		<Box
@@ -23,8 +23,8 @@ const Testimonials = () => {
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
 			<SectionTitles
-				smallTitle='What Our Clients Say'
 				bigTitle='Testimonials'
+				smallTitle='What Our Clients Say'
 			/>
 
 			<Swiper

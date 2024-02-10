@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
 
-const BorderButton = ({ sxProps, text }) => {
+const BorderButton = ({ onClick, sxProps, text }) => {
 	return (
 		<Button
+			onClick={onClick}
 			sx={{
 				border: "inherit",
 				borderBottomWidth: 2,

@@ -37,7 +37,7 @@ const OurLocation = () => {
 				xs: "80%",
 				lg: "75%",
 			}}>
-			<SectionTitles smallTitle='Visit us' bigTitle='Our Location' />
+			<SectionTitles bigTitle='Our Location' smallTitle='Visit us' />
 
 			<Box
 				className='space-y-4 md:space-x-4 md:space-y-0'

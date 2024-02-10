@@ -1,33 +1,29 @@
 import { Box, Pagination, PaginationItem, Skeleton } from "@mui/material";
-import MenuCards from "@/components/shared/MenuCards";
+import ShopCards from "@/components/Shop/ShopCards";
 import { useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 const TabContent = ({ activeTab }) => {
 	const [loading, setLoading] = useState(true);
 	const [menu, setMenu] = useState([]);
 	const [page, setPage] = useState(1);
+	const axiosPublic = useAxiosPublic();
 
 	useEffect(() => {
 		setLoading(true);
-		fetch("https://gs-bistro-boss-backend.vercel.app/menu")
-			.then((res) => res.json())
-			.then((data) => {
-				setMenu(data.filter((item) => item.category === activeTab));
-				setLoading(false);
-			});
-	}, [activeTab]);
+		axiosPublic.get("/menu").then(({ data }) => {
+			setMenu(data.filter((item) => item.category === activeTab));
+			setLoading(false);
+		});
+	}, [activeTab, axiosPublic]);
 
 	return (
-		<Box
-			className='space-y-8'
-			component='section'
-			mx='auto'
-			width={{ xs: "80%", md: "75%" }}>
+		<Box className='space-y-8' component='section'>
 			{loading ? (
 				<Box
 					display='grid'
-					gap={6}
+					gap={8}
 					gridTemplateColumns={{
 						xs: "repeat(1, 1fr)",
 						md: "repeat(3, 1fr)",
@@ -35,14 +31,14 @@ const TabContent = ({ activeTab }) => {
 					{[0, 1, 2, 3, 4, 5, 6, 7, 8].map((skeleton, index) => (
 						<Skeleton
 							animation='wave'
-							height='50vh'
+							height='26rem'
 							key={index}
 							variant='rounded'
 						/>
 					))}
 				</Box>
 			) : (
-				<MenuCards cards={menu.slice(9 * (page - 1), 9 * page)} />
+				<ShopCards cards={menu.slice(9 * (page - 1), 9 * page)} />
 			)}
 
 			<Pagination

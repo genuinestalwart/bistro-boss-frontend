@@ -1,21 +1,23 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import LoginLayout from "@/layouts/LoginLayout";
 import {
 	loadCaptchaEnginge,
 	LoadCanvasTemplate,
 	validateCaptcha,
 } from "react-simple-captcha";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { grey } from "@mui/material/colors";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "@/providers/AuthProvider";
-import { ToastContext } from "@/providers/ToastProvider";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import LoginButton from "@/components/login/LoginButton";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const fieldItems = [
+const fieldProps = [
 	{
+		autoComplete: "on",
 		id: "email",
+		helperText: "",
 		label: "Email",
 		type: "email",
 		validation: {
@@ -24,20 +26,30 @@ const fieldItems = [
 		},
 	},
 	{
+		autoComplete: "on",
 		id: "password",
+		helperText: "",
 		label: "Password",
 		type: "password",
 		validation: {
 			minLength: 8,
 		},
 	},
+	{
+		id: "captcha",
+		helperText: "Incorrect captcha. Please try again.",
+		placeholder: "Write the captcha here",
+		type: "text",
+		validation: {
+			validate: (value) => validateCaptcha(value, false),
+		},
+	},
 ];
 
 const SignInPage = () => {
-	const [captchaError, setCaptchaError] = useState(false);
+	const location = useLocation();
 	const navigate = useNavigate();
-	const { toast } = useContext(ToastContext);
-	const { loginUser } = useContext(AuthContext);
+	const { loading, user, loginUser } = useContext(AuthContext);
 
 	const {
 		register,
@@ -46,29 +58,19 @@ const SignInPage = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		const { captcha, email, password } = data;
-
-		if (validateCaptcha(captcha)) {
-			setCaptchaError(false);
-			loginUser(email, password)
-				.then(() => {
-					navigate("/dashboard");
-				})
-				.catch((error) => {
-					toast({
-						title: "Incorrect Email or Password!",
-						description:
-							"The email and password you entered doesn't match. Either your password is wrong or the email was never registered on our website. Try checking the spelling again.",
-					});
-				});
-		} else {
-			setCaptchaError(true);
-		}
+		loginUser(data.email, data.password).then(() => {
+			navigate("/dashboard", {
+				replace: true,
+				state: location.state,
+			});
+		});
 	};
 
 	useEffect(() => {
-		loadCaptchaEnginge(6);
-	}, []);
+		if (!loading && !user) {
+			loadCaptchaEnginge(6);
+		}
+	}, [loading, user]);
 
 	return (
 		<LoginLayout login={true}>
@@ -81,15 +83,19 @@ const SignInPage = () => {
 				component='form'
 				onSubmit={handleSubmit(onSubmit)}
 				px={{ xs: 6, md: 0 }}>
-				{fieldItems.map((fieldItem, index) => (
+				{fieldProps.map((fieldItem, index) => (
 					<TextField
-						autoComplete='on'
+						autoComplete={fieldItem.autoComplete}
 						color='accent'
 						error={errors[fieldItem.id] ? true : false}
 						fullWidth
+						helperText={
+							errors[fieldItem.id] ? fieldItem.helperText : ""
+						}
 						id={fieldItem.id}
 						key={index}
 						label={fieldItem.label}
+						placeholder={fieldItem.placeholder}
 						{...register(fieldItem.id, fieldItem.validation)}
 						required
 						size='small'
@@ -112,46 +118,7 @@ const SignInPage = () => {
 					<LoadCanvasTemplate />
 				</Box>
 
-				<TextField
-					color='accent'
-					error={captchaError}
-					fullWidth
-					helperText={
-						captchaError
-							? "Incorrect captcha. Please try again."
-							: ""
-					}
-					id='captcha'
-					placeholder='Write the captcha here'
-					{...register("captcha")}
-					required
-					size='small'
-					sx={{
-						bgcolor: "primary.main",
-					}}
-					type='text'
-					variant='outlined'
-				/>
-
-				<Button
-					color='accent'
-					size='large'
-					sx={{
-						color: "secondary.main",
-						display: "flex",
-						fontFamily: "inherit",
-						fontWeight: 600,
-						mx: "auto",
-						width: "100%",
-						"&:hover": {
-							bgcolor: "secondary.main",
-							color: "accent.main",
-						},
-					}}
-					type='submit'
-					variant='contained'>
-					Sign In
-				</Button>
+				<LoginButton text='Sign In' />
 			</Box>
 		</LoginLayout>
 	);

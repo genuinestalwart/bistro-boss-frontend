@@ -1,17 +1,28 @@
-import { Link, NavLink } from "react-router-dom";
-import { Box, Button, CircularProgress, Drawer } from "@mui/material";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import {
+	Badge,
+	Box,
+	Button,
+	CircularProgress,
+	Drawer,
+	IconButton,
+} from "@mui/material";
 import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
+import { ShoppingCart } from "@mui/icons-material";
+import useCart from "@/hooks/useCart";
 
 const navItems = [
-	{ path: "/", pathName: "Home" },
-	{ path: "/contact-us", pathName: "Contact Us" },
-	{ path: "/dashboard", pathName: "Dashboard", private: true },
-	{ path: "/menu", pathName: "Our Menu" },
-	{ path: "/shop", pathName: "Our Shop" },
+	{ path: "/", name: "Home" },
+	{ path: "contact-us", name: "Contact Us" },
+	{ path: "dashboard", name: "Dashboard", private: true },
+	{ path: "menu", name: "Our Menu" },
+	{ path: "shop", name: "Our Shop" },
 ];
 
-const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
+const Navbar = ({ navbarOpen, setNavbarOpen }) => {
+	const location = useLocation();
+	const [cart] = useCart();
 	const { loading, logOut, user } = useContext(AuthContext);
 
 	const navbar = navItems.map((navItem, index) => {
@@ -20,6 +31,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 		} else {
 			return (
 				<NavLink
+					caseSensitive
 					className={({ isActive }) =>
 						`bg-secondary/5 md:bg-transparent font-semibold py-3 md:py-0 rounded-lg text-center text-sm uppercase w-4/5 md:w-auto ${
 							navItem.private && !user ? "hidden" : ""
@@ -29,9 +41,11 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 								: "hover:bg-accent md:hover:bg-transparent md:hover:text-primary md:hover:underline underline-offset-2"
 						}`
 					}
+					end
 					key={index}
+					state={{ from: location }}
 					to={navItem.path}>
-					{navItem.pathName}
+					{navItem.name}
 				</NavLink>
 			);
 		}
@@ -40,7 +54,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 	return (
 		<Box
 			alignItems='center'
-			className='space-x-4'
+			className='md:space-x-4'
 			component='nav'
 			display='flex'>
 			<Box className='space-x-4' display={{ xs: "none", md: "block" }}>
@@ -51,8 +65,8 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 				classes={{
 					paper: "space-y-2",
 				}}
-				open={sidebarOpen}
-				onClose={() => setSidebarOpen(!sidebarOpen)}
+				open={navbarOpen}
+				onClose={() => setNavbarOpen(!navbarOpen)}
 				sx={{
 					display: { md: "none" },
 					"& .MuiDrawer-paper": {
@@ -69,30 +83,52 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 			{loading ? (
 				<CircularProgress color='accent' />
 			) : !user ? (
-				<Link to='/signin'>
+				<>
+					<IconButton aria-label='cart'>
+						<ShoppingCart color='primary' />
+					</IconButton>
+
+					<Link
+						className='block'
+						state={{ from: location }}
+						to='/signin'>
+						<Button
+							color='accent'
+							sx={{
+								color: "secondary.main",
+								fontFamily: "inherit",
+								fontWeight: 600,
+							}}
+							variant='contained'>
+							Log In
+						</Button>
+					</Link>
+				</>
+			) : (
+				<>
+					<Link
+						className='block'
+						state={{ from: location }}
+						to='/dashboard/cart'>
+						<IconButton aria-label='cart'>
+							<Badge badgeContent={cart.length} color='accent'>
+								<ShoppingCart color='primary' />
+							</Badge>
+						</IconButton>
+					</Link>
+
 					<Button
 						color='accent'
+						onClick={logOut}
 						sx={{
 							color: "secondary.main",
 							fontFamily: "inherit",
 							fontWeight: 600,
 						}}
 						variant='contained'>
-						Log In
+						Log Out
 					</Button>
-				</Link>
-			) : (
-				<Button
-					color='accent'
-					onClick={logOut}
-					sx={{
-						color: "secondary.main",
-						fontFamily: "inherit",
-						fontWeight: 600,
-					}}
-					variant='contained'>
-					Log Out
-				</Button>
+				</>
 			)}
 		</Box>
 	);

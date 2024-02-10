@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const DashboardPage = () => {
+const DashHomePage = () => {
 	return (
 		<>
 			<Helmet>
@@ -10,4 +10,4 @@ const DashboardPage = () => {
 	);
 };
 
-export default DashboardPage;
+export default DashHomePage;

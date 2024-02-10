@@ -1,19 +1,12 @@
-import { useState, useEffect } from "react";
-import MenuItems from "@/components/shared/MenuItems";
+import MenuItems from "@/components/Menu/MenuItems";
 import SectionTitles from "@/components/shared/SectionTitles";
-import { Box } from "@mui/material";
-import BorderButton from "@/components/shared/BorderButton";
+import { Box, Skeleton } from "@mui/material";
+import BorderButton from "@/components/shared/buttons/BorderButton";
+import useMenu from "@/hooks/useMenu";
 
 const TodaysOffer = () => {
-	const [menu, setMenu] = useState([]);
-
-	useEffect(() => {
-		fetch("https://gs-bistro-boss-backend.vercel.app/menu")
-			.then((res) => res.json())
-			.then((data) =>
-				setMenu(data.filter((item) => item.type === "today's offer"))
-			);
-	}, []);
+	const [data, loading] = useMenu();
+	const menu = data.filter((item) => item.type === "today's offer");
 
 	return (
 		<Box
@@ -21,8 +14,28 @@ const TodaysOffer = () => {
 			component='section'
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
-			<SectionTitles smallTitle="Don't miss" bigTitle="Today's Offer" />
-			<MenuItems items={menu} />
+			<SectionTitles bigTitle="Today's Offer" smallTitle="Don't miss" />
+
+			{loading ? (
+				<Box
+					display='grid'
+					gap={6}
+					gridTemplateColumns={{
+						xs: "repeat(1, 1fr)",
+						md: "repeat(2, 1fr)",
+					}}>
+					{[0, 1, 2, 3, 4, 5].map((skeleton, index) => (
+						<Skeleton
+							animation='wave'
+							height='6rem'
+							key={index}
+							variant='rounded'
+						/>
+					))}
+				</Box>
+			) : (
+				<MenuItems items={menu} />
+			)}
 
 			<BorderButton
 				sxProps={{

@@ -1,18 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import SectionTitles from "@/components/shared/SectionTitles";
-import MenuCards from "@/components/shared/MenuCards";
-import { useEffect, useState } from "react";
+import ShopCards from "@/components/Shop/ShopCards";
+import useMenu from "@/hooks/useMenu";
 
 const Recommended = () => {
-	const [menu, setMenu] = useState([]);
-
-	useEffect(() => {
-		fetch("https://gs-bistro-boss-backend.vercel.app/menu")
-			.then((res) => res.json())
-			.then((data) =>
-				setMenu(data.filter((item) => item.type === "recommended"))
-			);
-	}, []);
+	const [data, loading] = useMenu();
+	const menu = data.filter((item) => item.type === "recommended");
 
 	return (
 		<Box
@@ -20,8 +13,28 @@ const Recommended = () => {
 			component='section'
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
-			<SectionTitles smallTitle='Should Try' bigTitle='Chef Recommends' />
-			<MenuCards cards={menu} />
+			<SectionTitles bigTitle='Chef Recommends' smallTitle='Should Try' />
+
+			{loading ? (
+				<Box
+					display='grid'
+					gap={8}
+					gridTemplateColumns={{
+						xs: "repeat(1, 1fr)",
+						md: "repeat(3, 1fr)",
+					}}>
+					{[0, 1, 2].map((skeleton, index) => (
+						<Skeleton
+							animation='wave'
+							height='26rem'
+							key={index}
+							variant='rounded'
+						/>
+					))}
+				</Box>
+			) : (
+				<ShopCards cards={menu} />
+			)}
 		</Box>
 	);
 };

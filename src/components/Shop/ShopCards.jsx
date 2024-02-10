@@ -8,13 +8,54 @@ import {
 	Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import BorderButton from "@/components/shared/BorderButton";
+import BorderButton from "@/components/shared/buttons/BorderButton";
+import { useContext } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
+import { ToastContext } from "@/providers/ToastProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import useCart from "@/hooks/useCart";
 
-const MenuCards = ({ cards }) => {
+const ShopCards = ({ cards }) => {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const axiosSecure = useAxiosSecure();
+	const [, refetch] = useCart();
+	const { loading, user } = useContext(AuthContext);
+	const { toast } = useContext(ToastContext);
+
+	const handleAddToCart = (item) => {
+		if (!loading && !user) {
+			navigate("/signin", {
+				state: {
+					from: location,
+				},
+			});
+		} else if (user) {
+			const cartItem = {
+				email: user.email,
+				image: item.image,
+				menuID: item._id,
+				name: item.name,
+				price: item.price,
+			};
+
+			axiosSecure.post("/carts", cartItem).then(() => {
+				toast({
+					title: "Item Added!",
+					type: "success",
+					position: { horizontal: "right", vertical: "top" },
+					description: "Go to your dashboard to manage your cart.",
+				});
+				refetch();
+			});
+		}
+	};
+
 	return (
 		<Box
 			display='grid'
-			gap={6}
+			gap={8}
 			gridTemplateColumns={{
 				xs: "repeat(1, 1fr)",
 				md: "repeat(3, 1fr)",
@@ -62,10 +103,11 @@ const MenuCards = ({ cards }) => {
 
 						<CardActions sx={{ bgcolor: grey[100], pb: 6 }}>
 							<BorderButton
+								onClick={() => handleAddToCart(card)}
 								sxProps={{
 									bgcolor: grey[300],
-									borderColor: "accent.main",
-									color: "accent.main",
+									borderColor: "secondary.main",
+									color: "secondary.main",
 									display: "block",
 									mx: "auto",
 								}}
@@ -79,4 +121,4 @@ const MenuCards = ({ cards }) => {
 	);
 };
 
-export default MenuCards;
+export default ShopCards;

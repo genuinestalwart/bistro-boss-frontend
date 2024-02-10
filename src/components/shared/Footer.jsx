@@ -1,12 +1,10 @@
+import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
-import Facebook from "@/components/shared/icons/Facebook";
-import Instagram from "@/components/shared/icons/Instagram";
-import Twitter from "@/components/shared/icons/Twitter";
 
 const icons = [
-	{ component: <Facebook />, label: "facebook" },
-	{ component: <Instagram />, label: "instagram" },
-	{ component: <Twitter />, label: "x" },
+	{ component: <Facebook color='primary' />, label: "facebook" },
+	{ component: <Instagram color='primary' />, label: "instagram" },
+	{ component: <Twitter color='primary' />, label: "x" },
 ];
 
 const Footer = () => {

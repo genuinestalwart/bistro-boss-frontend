@@ -3,30 +3,10 @@ import TabChanger from "@/components/Shop/TabChanger";
 import TabContent from "@/components/Shop/TabContent";
 import Heading from "@/components/shared/Heading";
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const ShopPage = () => {
 	const [activeTab, setActiveTab] = useState("dessert");
-	const location = useLocation();
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (!location.search) {
-			navigate("/shop?category=dessert", {
-				replace: true,
-			});
-		} else {
-			const category = location.search.split("=")[1];
-			setActiveTab(category);
-		}
-	}, []);
-
-	useEffect(() => {
-		navigate(`/shop?category=${activeTab}`, {
-			replace: true,
-		});
-	}, [activeTab]);
 
 	return (
 		<>
