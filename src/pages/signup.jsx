@@ -1,24 +1,26 @@
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import LoginLayout from "@/layouts/LoginLayout";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
-import LoginButton from "@/components/login/LoginButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import StyledButton from "@/components/shared/buttons/StyledButton";
+import InputField from "@/components/shared/InputField";
 
-const fieldProps = [
+const fields = [
 	{
+		autoComplete: "name",
+		fullWidth: true,
 		id: "name",
 		label: "Name",
 		type: "text",
-		validation: {
-			maxLength: 32,
-			minLength: 3,
-		},
+		validation: { maxLength: 32, minLength: 3 },
 	},
 	{
+		autoComplete: "email",
+		fullWidth: true,
 		id: "email",
 		label: "Email",
 		type: "email",
@@ -28,12 +30,12 @@ const fieldProps = [
 		},
 	},
 	{
+		autoComplete: "new-password",
+		fullWidth: true,
 		id: "password",
 		label: "Password",
 		type: "password",
-		validation: {
-			minLength: 8,
-		},
+		validation: { minLength: 8 },
 	},
 ];
 
@@ -60,10 +62,7 @@ const SignUpPage = () => {
 				uid: res.user?.uid,
 			});
 
-			navigate("/dashboard", {
-				replace: true,
-				state: location.state,
-			});
+			navigate("/dashboard", { state: { from: location } });
 		});
 	};
 
@@ -78,27 +77,27 @@ const SignUpPage = () => {
 				component='form'
 				onSubmit={handleSubmit(onSubmit)}
 				px={{ xs: 6, md: 0 }}>
-				{fieldProps.map((fieldItem, index) => (
-					<TextField
-						autoComplete='off'
-						color='accent'
-						error={errors[fieldItem.id] ? true : false}
-						fullWidth
-						id={fieldItem.id}
-						key={index}
-						label={fieldItem.label}
-						{...register(fieldItem.id, fieldItem.validation)}
-						required
+				{fields.map((field, i) => (
+					<InputField
+						errors={errors}
+						field={field}
+						key={i}
+						register={register}
 						size='small'
-						sx={{
-							bgcolor: "primary.main",
-						}}
-						type={fieldItem.type}
-						variant='outlined'
 					/>
 				))}
 
-				<LoginButton text='Sign Up' />
+				<StyledButton
+					size='large'
+					sx={{
+						borderRadius: 1.5,
+						display: "flex",
+						mx: "auto",
+						width: "100%",
+					}}
+					type='submit'>
+					Sign Up
+				</StyledButton>
 			</Box>
 		</LoginLayout>
 	);

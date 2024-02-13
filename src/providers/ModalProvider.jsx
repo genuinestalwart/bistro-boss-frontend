@@ -30,35 +30,18 @@ const ModalProvider = ({ children }) => {
 				className='[&_div.MuiDialog-paper]:space-y-4'
 				open={open}
 				onClose={() => setOpen(false)}
-				sx={{
-					"& .MuiDialog-paper": {
-						p: 6,
-					},
-				}}>
-				<DialogTitle
-					fontWeight={700}
-					sx={{
-						p: 0,
-					}}>
+				sx={{ "& .MuiDialog-paper": { p: 6 } }}>
+				<DialogTitle fontWeight={700} sx={{ p: 0 }}>
 					{data.title}
 				</DialogTitle>
 
-				<DialogContent
-					sx={{
-						p: 0,
-					}}>
-					<DialogContentText
-						sx={{
-							color: "secondary.main",
-						}}>
+				<DialogContent sx={{ p: 0 }}>
+					<DialogContentText sx={{ color: "secondary.main" }}>
 						{data.description}
 					</DialogContentText>
 				</DialogContent>
 
-				<DialogActions
-					sx={{
-						p: 0,
-					}}>
+				<DialogActions sx={{ p: 0 }}>
 					<Button
 						sx={{
 							bgcolor: grey[400],
@@ -73,16 +56,13 @@ const ModalProvider = ({ children }) => {
 
 					<Button
 						color={data.color}
-						sx={{
-							fontFamily: "inherit",
-							fontWeight: 600,
-						}}
+						sx={{ fontFamily: "inherit", fontWeight: 600 }}
 						variant='contained'
 						onClick={async () => {
+							setOpen(false);
 							setLoading(true);
 							await data.onClick();
 							setLoading(false);
-							setOpen(false);
 						}}>
 						{data.buttonText}
 					</Button>

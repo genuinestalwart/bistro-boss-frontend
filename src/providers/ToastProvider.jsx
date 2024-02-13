@@ -18,10 +18,7 @@ const ToastProvider = ({ children }) => {
 	};
 
 	return (
-		<ToastContext.Provider
-			value={{
-				toast,
-			}}>
+		<ToastContext.Provider value={{ toast }}>
 			{children}
 
 			<Snackbar
@@ -29,9 +26,7 @@ const ToastProvider = ({ children }) => {
 				autoHideDuration={4000}
 				onClose={handleClose}
 				open={open}
-				sx={{
-					width: { md: "25%" },
-				}}
+				sx={{ width: { md: "25%" } }}
 				TransitionComponent={Slide}>
 				<Alert
 					onClose={handleClose}

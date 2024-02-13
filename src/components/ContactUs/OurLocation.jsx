@@ -33,23 +33,18 @@ const OurLocation = () => {
 			className='space-y-8'
 			component='section'
 			mx='auto'
-			width={{
-				xs: "80%",
-				lg: "75%",
-			}}>
+			width={{ xs: "80%", lg: "75%" }}>
 			<SectionTitles bigTitle='Our Location' smallTitle='Visit us' />
 
 			<Box
 				className='space-y-4 md:space-x-4 md:space-y-0'
 				display={{ md: "flex" }}>
-				{contactInfo.map((info, index) => (
+				{contactInfo.map((info, i) => (
 					<Box
 						borderColor={grey[200]}
 						className='md:w-1/3'
-						key={index}
-						sx={{
-							borderWidth: 1,
-						}}
+						key={i}
+						sx={{ borderWidth: 1 }}
 						textAlign='center'>
 						<Box bgcolor='accent.main' color='primary.main' py={3}>
 							{info.icon}

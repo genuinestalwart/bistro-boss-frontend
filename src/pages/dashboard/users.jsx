@@ -3,7 +3,10 @@ import { Helmet } from "react-helmet-async";
 import SectionTitles from "@/components/shared/SectionTitles";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import AllUsersTable from "@/components/Dashboard/AllUsersTable";
+import DashTable from "@/components/Dashboard/DashTable";
+import UserRow from "@/components/Dashboard/rows/UserRow";
+
+const headerCells = ["", "Name", "Email", "Role", "Delete"];
 
 const AllUsersPage = () => {
 	const axiosSecure = useAxiosSecure();
@@ -17,31 +20,22 @@ const AllUsersPage = () => {
 	});
 
 	return (
-		<Box
-			className='space-y-12'
-			mx='auto'
-			py={8}
-			width={{ xs: "80%", md: "100%" }}>
+		<Box className='space-y-12' py={12}>
 			<Helmet>
-				<title>Bistro Boss | My Cart</title>
+				<title>Bistro Boss | All Users</title>
 			</Helmet>
 
-			<SectionTitles
-				bigTitle='Manage All Users'
-				component='h1'
-				smallTitle='How many?'
-			/>
+			<Box mx='auto' width={{ xs: "80%", md: "100%" }}>
+				<SectionTitles
+					bigTitle='Manage All Users'
+					component='h1'
+					smallTitle='How many?'
+				/>
+			</Box>
 
-			<Box
-				bgcolor='primary.main'
-				className='space-y-6'
-				mx='auto'
-				p={8}
-				width={{ lg: "75%" }}>
-				<Box
-					alignItems='center'
-					display='flex'
-					justifyContent='space-between'>
+			<DashTable
+				headerCells={headerCells}
+				summary={
 					<Typography
 						component='h3'
 						fontFamily='"Cinzel Variable", sans-serif'
@@ -49,10 +43,10 @@ const AllUsersPage = () => {
 						variant='h5'>
 						Total Users: {users.length}
 					</Typography>
-				</Box>
-
-				<AllUsersTable users={users} refetch={refetch} />
-			</Box>
+				}
+				tableName='all users'>
+				<UserRow refetch={refetch} users={users} />
+			</DashTable>
 		</Box>
 	);
 };

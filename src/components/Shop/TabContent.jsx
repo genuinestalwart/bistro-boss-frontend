@@ -2,21 +2,16 @@ import { Box, Pagination, PaginationItem, Skeleton } from "@mui/material";
 import ShopCards from "@/components/Shop/ShopCards";
 import { useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import useAxiosPublic from "@/hooks/useAxiosPublic";
+import useMenu from "@/hooks/useMenu";
 
 const TabContent = ({ activeTab }) => {
-	const [loading, setLoading] = useState(true);
 	const [menu, setMenu] = useState([]);
 	const [page, setPage] = useState(1);
-	const axiosPublic = useAxiosPublic();
+	const [data, loading] = useMenu();
 
 	useEffect(() => {
-		setLoading(true);
-		axiosPublic.get("/menu").then(({ data }) => {
-			setMenu(data.filter((item) => item.category === activeTab));
-			setLoading(false);
-		});
-	}, [activeTab, axiosPublic]);
+		setMenu(data.filter((item) => item.category === activeTab));
+	}, [activeTab, data]);
 
 	return (
 		<Box className='space-y-8' component='section'>
@@ -28,11 +23,11 @@ const TabContent = ({ activeTab }) => {
 						xs: "repeat(1, 1fr)",
 						md: "repeat(3, 1fr)",
 					}}>
-					{[0, 1, 2, 3, 4, 5, 6, 7, 8].map((skeleton, index) => (
+					{[0, 1, 2, 3, 4, 5, 6, 7, 8].map((skeleton, i) => (
 						<Skeleton
 							animation='wave'
 							height='26rem'
-							key={index}
+							key={i}
 							variant='rounded'
 						/>
 					))}
@@ -52,11 +47,7 @@ const TabContent = ({ activeTab }) => {
 					/>
 				)}
 				shape='rounded'
-				sx={{
-					"& .MuiPagination-ul": {
-						justifyContent: "center",
-					},
-				}}
+				sx={{ "& .MuiPagination-ul": { justifyContent: "center" } }}
 				variant='outlined'
 			/>
 		</Box>

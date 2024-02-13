@@ -59,10 +59,10 @@ const Footer = () => {
 							className='space-x-2'
 							display='flex'
 							justifyContent='center'>
-							{icons.map((icon, index) => (
+							{icons.map((icon, i) => (
 								<IconButton
 									aria-label={icon.label}
-									key={index}
+									key={i}
 									sx={{
 										"&:hover": {
 											bgcolor: "secondary.light",

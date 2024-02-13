@@ -23,10 +23,7 @@ const ContactUsPage = () => {
 				className='space-y-8'
 				component='section'
 				mx='auto'
-				width={{
-					xs: "80%",
-					md: "75%",
-				}}>
+				width={{ xs: "80%", md: "75%" }}>
 				<SectionTitles
 					bigTitle='Contact Form'
 					smallTitle='Send us a message'

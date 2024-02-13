@@ -10,12 +10,12 @@ const MenuItems = ({ items }) => {
 				xs: "repeat(1, 1fr)",
 				md: "repeat(2, 1fr)",
 			}}>
-			{items.map((item, index) => (
+			{items.map((item, i) => (
 				<Box
 					alignItems='start'
 					display='flex'
 					justifyContent='space-between'
-					key={index}>
+					key={i}>
 					<Box width='20%'>
 						<MenuIcon />
 					</Box>

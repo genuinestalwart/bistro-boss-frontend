@@ -18,21 +18,17 @@ const TabChanger = ({ activeTab, setActiveTab }) => {
 				"& .MuiTabs-flexContainer": {
 					justifyContent: { md: "center" },
 				},
-				"& .MuiTabs-indicator": {
-					bgcolor: "accent.main",
-				},
+				"& .MuiTabs-indicator": { bgcolor: "accent.main" },
 			}}
 			value={activeTab}
 			variant='scrollable'>
-			{tabItems.map((tabItem, index) => (
+			{tabItems.map((tabItem, i) => (
 				<Tab
-					key={index}
+					key={i}
 					sx={{
 						color: "secondary.main",
 						fontWeight: 600,
-						"&.Mui-selected": {
-							color: "accent.main",
-						},
+						"&.Mui-selected": { color: "accent.main" },
 					}}
 					value={tabItem.value}
 					label={tabItem.label}

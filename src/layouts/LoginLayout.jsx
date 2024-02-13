@@ -3,7 +3,7 @@ import loginBanner from "@/assets/banners/login.png";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import LoginWith from "@/components/login/LoginWith";
+import LoginWith from "@/components/shared/LoginWith";
 import PageLoading from "@/components/shared/PageLoading";
 
 const LoginLayout = ({ login, children }) => {
@@ -78,7 +78,7 @@ const LoginLayout = ({ login, children }) => {
 			</Box>
 		</Box>
 	) : (
-		<Navigate replace state={location.state} to='/dashboard' />
+		<Navigate state={{ from: location }} to='/dashboard' />
 	);
 };
 

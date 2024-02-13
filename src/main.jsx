@@ -1,5 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "@/index.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/cinzel";

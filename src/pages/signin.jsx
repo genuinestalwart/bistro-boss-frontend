@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import LoginLayout from "@/layouts/LoginLayout";
 import {
 	loadCaptchaEnginge,
@@ -10,12 +10,14 @@ import { grey } from "@mui/material/colors";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import LoginButton from "@/components/login/LoginButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import StyledButton from "@/components/shared/buttons/StyledButton";
+import InputField from "@/components/shared/InputField";
 
-const fieldProps = [
+const fields = [
 	{
-		autoComplete: "on",
+		autoComplete: "email",
+		fullWidth: true,
 		id: "email",
 		helperText: "",
 		label: "Email",
@@ -26,23 +28,21 @@ const fieldProps = [
 		},
 	},
 	{
-		autoComplete: "on",
+		autoComplete: "new-password",
+		fullWidth: true,
 		id: "password",
 		helperText: "",
 		label: "Password",
 		type: "password",
-		validation: {
-			minLength: 8,
-		},
+		validation: { minLength: 8 },
 	},
 	{
+		fullWidth: true,
 		id: "captcha",
 		helperText: "Incorrect captcha. Please try again.",
 		placeholder: "Write the captcha here",
 		type: "text",
-		validation: {
-			validate: (value) => validateCaptcha(value, false),
-		},
+		validation: { validate: (value) => validateCaptcha(value, false) },
 	},
 ];
 
@@ -59,10 +59,7 @@ const SignInPage = () => {
 
 	const onSubmit = (data) => {
 		loginUser(data.email, data.password).then(() => {
-			navigate("/dashboard", {
-				replace: true,
-				state: location.state,
-			});
+			navigate("/dashboard", { state: { from: location } });
 		});
 	};
 
@@ -83,27 +80,13 @@ const SignInPage = () => {
 				component='form'
 				onSubmit={handleSubmit(onSubmit)}
 				px={{ xs: 6, md: 0 }}>
-				{fieldProps.map((fieldItem, index) => (
-					<TextField
-						autoComplete={fieldItem.autoComplete}
-						color='accent'
-						error={errors[fieldItem.id] ? true : false}
-						fullWidth
-						helperText={
-							errors[fieldItem.id] ? fieldItem.helperText : ""
-						}
-						id={fieldItem.id}
-						key={index}
-						label={fieldItem.label}
-						placeholder={fieldItem.placeholder}
-						{...register(fieldItem.id, fieldItem.validation)}
-						required
+				{fields.map((field, i) => (
+					<InputField
+						errors={errors}
+						field={field}
+						key={i}
+						register={register}
 						size='small'
-						sx={{
-							bgcolor: "primary.main",
-						}}
-						type={fieldItem.type}
-						variant='outlined'
 					/>
 				))}
 
@@ -118,7 +101,17 @@ const SignInPage = () => {
 					<LoadCanvasTemplate />
 				</Box>
 
-				<LoginButton text='Sign In' />
+				<StyledButton
+					size='large'
+					sx={{
+						borderRadius: 1.5,
+						display: "flex",
+						mx: "auto",
+						width: "100%",
+					}}
+					type='submit'>
+					Sign In
+				</StyledButton>
 			</Box>
 		</LoginLayout>
 	);

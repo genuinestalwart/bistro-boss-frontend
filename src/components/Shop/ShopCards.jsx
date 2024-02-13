@@ -26,11 +26,7 @@ const ShopCards = ({ cards }) => {
 
 	const handleAddToCart = (item) => {
 		if (!loading && !user) {
-			navigate("/signin", {
-				state: {
-					from: location,
-				},
-			});
+			navigate("/signin", { state: { from: location } });
 		} else if (user) {
 			const cartItem = {
 				email: user.email,
@@ -47,6 +43,7 @@ const ShopCards = ({ cards }) => {
 					position: { horizontal: "right", vertical: "top" },
 					description: "Go to your dashboard to manage your cart.",
 				});
+
 				refetch();
 			});
 		}
@@ -60,14 +57,12 @@ const ShopCards = ({ cards }) => {
 				xs: "repeat(1, 1fr)",
 				md: "repeat(3, 1fr)",
 			}}>
-			{cards.map((card, index) => (
+			{cards.map((card, i) => (
 				<Card
-					key={index}
+					key={i}
 					sx={{
 						boxShadow: 2,
-						"&.MuiPaper-root": {
-							bgcolor: grey[100],
-						},
+						"&.MuiPaper-root": { bgcolor: grey[100] },
 					}}>
 					<CardActionArea
 						component='div'

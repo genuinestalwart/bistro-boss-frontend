@@ -16,9 +16,7 @@ const DashHeader = ({ isAdmin }) => {
 			justifyContent='space-between'
 			px={6}
 			py={{ md: 8 }}
-			sx={{
-				overflowY: { md: "auto" },
-			}}
+			sx={{ overflowY: { md: "auto" } }}
 			width={{ md: "30%", lg: "25%" }}>
 			<Box px={{ md: 2 }} textTransform='uppercase'>
 				<Typography

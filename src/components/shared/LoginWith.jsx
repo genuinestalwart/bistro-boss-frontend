@@ -21,10 +21,7 @@ const LoginWith = () => {
 				uid: res.user?.uid,
 			});
 
-			navigate("/dashboard", {
-				replace: true,
-				state: location.state,
-			});
+			navigate("/dashboard", { state: { from: location } });
 		});
 	};
 
@@ -37,17 +34,14 @@ const LoginWith = () => {
 	return (
 		<Box
 			display='flex'
-			justifyContent={{
-				xs: "space-evenly",
-				md: "space-between",
-			}}
+			justifyContent={{ xs: "space-evenly", md: "space-between" }}
 			mx='auto'
 			width={{ md: "50%" }}>
-			{icons.map((icon, index) => (
+			{icons.map((icon, i) => (
 				<IconButton
 					aria-label={icon.label}
 					color='secondary.light'
-					key={index}
+					key={i}
 					onClick={icon.onClick}
 					sx={{
 						border: "inherit",

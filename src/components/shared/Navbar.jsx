@@ -2,7 +2,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import {
 	Badge,
 	Box,
-	Button,
 	CircularProgress,
 	Drawer,
 	IconButton,
@@ -11,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 import { ShoppingCart } from "@mui/icons-material";
 import useCart from "@/hooks/useCart";
+import StyledButton from "@/components/shared/buttons/StyledButton";
 
 const navItems = [
 	{ path: "/", name: "Home" },
@@ -25,7 +25,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 	const [cart] = useCart();
 	const { loading, logOut, user } = useContext(AuthContext);
 
-	const navbar = navItems.map((navItem, index) => {
+	const navbar = navItems.map((navItem, i) => {
 		if (navItem.private && !user) {
 			return;
 		} else {
@@ -42,7 +42,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						}`
 					}
 					end
-					key={index}
+					key={i}
 					state={{ from: location }}
 					to={navItem.path}>
 					{navItem.name}
@@ -62,9 +62,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 			</Box>
 
 			<Drawer
-				classes={{
-					paper: "space-y-2",
-				}}
+				classes={{ paper: "space-y-2" }}
 				open={navbarOpen}
 				onClose={() => setNavbarOpen(!navbarOpen)}
 				sx={{
@@ -92,16 +90,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						className='block'
 						state={{ from: location }}
 						to='/signin'>
-						<Button
-							color='accent'
-							sx={{
-								color: "secondary.main",
-								fontFamily: "inherit",
-								fontWeight: 600,
-							}}
-							variant='contained'>
-							Log In
-						</Button>
+						<StyledButton>Log In</StyledButton>
 					</Link>
 				</>
 			) : (
@@ -117,17 +106,12 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						</IconButton>
 					</Link>
 
-					<Button
-						color='accent'
+					<StyledButton
+						color='error'
 						onClick={logOut}
-						sx={{
-							color: "secondary.main",
-							fontFamily: "inherit",
-							fontWeight: 600,
-						}}
-						variant='contained'>
+						sx={{ color: "primary.main" }}>
 						Log Out
-					</Button>
+					</StyledButton>
 				</>
 			)}
 		</Box>

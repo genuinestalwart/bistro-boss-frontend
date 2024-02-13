@@ -23,11 +23,11 @@ const Recommended = () => {
 						xs: "repeat(1, 1fr)",
 						md: "repeat(3, 1fr)",
 					}}>
-					{[0, 1, 2].map((skeleton, index) => (
+					{[0, 1, 2].map((skeleton, i) => (
 						<Skeleton
 							animation='wave'
 							height='26rem'
-							key={index}
+							key={i}
 							variant='rounded'
 						/>
 					))}

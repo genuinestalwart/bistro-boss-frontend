@@ -47,9 +47,7 @@ const DashLayout = () => {
 				bgcolor={grey[100]}
 				component='main'
 				height={{ md: "100%" }}
-				sx={{
-					overflowY: { md: "auto" },
-				}}
+				sx={{ overflowY: { md: "auto" } }}
 				width={{ md: "70%", lg: "75%" }}>
 				<Outlet />
 			</Box>
@@ -57,7 +55,7 @@ const DashLayout = () => {
 	) : user ? (
 		<NotFound />
 	) : (
-		<Navigate state={location.state} to='/signin' />
+		<Navigate state={{ from: location }} to='/signin' />
 	);
 };
 

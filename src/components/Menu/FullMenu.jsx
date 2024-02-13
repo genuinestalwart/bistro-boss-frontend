@@ -1,27 +1,16 @@
-import { useState, useEffect } from "react";
 import MenuItems from "@/components/Menu/MenuItems";
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import BorderButton from "@/components/shared/buttons/BorderButton";
 import { Link, useLocation } from "react-router-dom";
-import useAxiosPublic from "@/hooks/useAxiosPublic";
+import useMenu from "@/hooks/useMenu";
 
 const FullMenu = ({ category }) => {
-	const [menu, setMenu] = useState([]);
 	const location = useLocation();
-	const axiosPublic = useAxiosPublic();
+	const [data, loading] = useMenu();
 
-	useEffect(() => {
-		axiosPublic
-			.get("/menu")
-			.then(({ data }) =>
-				setMenu(
-					data.filter(
-						(item) =>
-							item.type === "none" && item.category === category
-					)
-				)
-			);
-	}, [axiosPublic, category]);
+	const menu = data.filter(
+		(item) => item.type === "none" && item.category === category
+	);
 
 	return (
 		<Box
@@ -29,7 +18,26 @@ const FullMenu = ({ category }) => {
 			component='section'
 			mx='auto'
 			width={{ xs: "80%", md: "75%" }}>
-			<MenuItems items={menu} />
+			{loading ? (
+				<Box
+					display='grid'
+					gap={6}
+					gridTemplateColumns={{
+						xs: "repeat(1, 1fr)",
+						md: "repeat(2, 1fr)",
+					}}>
+					{[0, 1, 2, 3, 4, 5, 6, 7].map((skeleton, i) => (
+						<Skeleton
+							animation='wave'
+							height='6rem'
+							key={i}
+							variant='rounded'
+						/>
+					))}
+				</Box>
+			) : (
+				<MenuItems items={menu} />
+			)}
 
 			<Link className='block' state={{ from: location }} to='/shop'>
 				<BorderButton

@@ -18,26 +18,23 @@ const useAxiosSecure = () => {
 				config.headers.Authorization = `Bearer ${localStorage.getItem(
 					"access-token"
 				)}`;
+
 				return config;
 			},
-			(error) => {
-				return Promise.reject(error);
-			}
+
+			(error) => Promise.reject(error)
 		);
 
 		const secureTheResponse = axiosSecure.interceptors.response.use(
 			(response) => response,
+
 			async (error) => {
 				if (
 					error.response.status === 401 ||
 					error.response.status == 403
 				) {
 					await logOut();
-					navigate("/signin", {
-						state: {
-							from: location,
-						},
-					});
+					navigate("/signin", { state: { from: location } });
 				}
 
 				return Promise.reject(error);

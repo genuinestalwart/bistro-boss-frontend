@@ -1,8 +1,9 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import error404 from "@/assets/others/404.gif";
 import { Home } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import StyledButton from "@/components/shared/buttons/StyledButton";
 
 const NotFound = () => {
 	const location = useLocation();
@@ -26,23 +27,11 @@ const NotFound = () => {
 			/>
 
 			<Link className='block' state={{ from: location }} to='/'>
-				<Button
-					color='accent'
+				<StyledButton
 					endIcon={<Home />}
-					sx={{
-						color: "secondary.main",
-						display: "flex",
-						fontFamily: "inherit",
-						fontWeight: 600,
-						mx: "auto",
-						"&:hover": {
-							bgcolor: "secondary.main",
-							color: "accent.main",
-						},
-					}}
-					variant='contained'>
+					sx={{ display: "flex", mx: "auto" }}>
 					Back To Home
-				</Button>
+				</StyledButton>
 			</Link>
 		</Box>
 	);

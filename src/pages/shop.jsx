@@ -23,10 +23,7 @@ const ShopPage = () => {
 				className='space-y-8'
 				component='section'
 				mx='auto'
-				width={{
-					xs: "80%",
-					md: "75%",
-				}}>
+				width={{ xs: "80%", md: "75%" }}>
 				<TabChanger activeTab={activeTab} setActiveTab={setActiveTab} />
 				<TabContent activeTab={activeTab} />
 			</Box>

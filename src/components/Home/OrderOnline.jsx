@@ -1,8 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/scrollbar";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import swiperSlide1 from "@/assets/home/swiperSlide1.jpg";
 import swiperSlide2 from "@/assets/home/swiperSlide2.jpg";
@@ -26,10 +22,7 @@ const OrderOnline = () => {
 			className='space-y-8'
 			component='section'
 			mx='auto'
-			width={{
-				xs: "80%",
-				md: "75%",
-			}}>
+			width={{ xs: "80%", md: "75%" }}>
 			<SectionTitles
 				bigTitle='Order Online'
 				component='h1'
@@ -37,23 +30,16 @@ const OrderOnline = () => {
 			/>
 
 			<Swiper
-				autoplay={{
-					delay: 4000,
-					disableOnInteraction: false,
-				}}
-				breakpoints={{
-					768: { slidesPerView: 4 },
-				}}
+				autoplay={{ delay: 4000, disableOnInteraction: false }}
+				breakpoints={{ 768: { slidesPerView: 4 } }}
 				className='[&_div.swiper-pagination]:mt-3 [&_div.swiper-pagination]:static'
 				grabCursor={true}
 				modules={[Autoplay, Pagination]}
-				pagination={{
-					clickable: true,
-				}}
+				pagination={{ clickable: true }}
 				slidesPerView={1}
 				spaceBetween={20}>
-				{swiperItems.map((swiperItem, index) => (
-					<SwiperSlide className='relative' key={index}>
+				{swiperItems.map((swiperItem, i) => (
+					<SwiperSlide className='relative' key={i}>
 						<img
 							alt={swiperItem.name}
 							className='block rounded-md w-full'
@@ -66,9 +52,7 @@ const OrderOnline = () => {
 							color='primary.main'
 							fontFamily='"Cinzel Variable", sans-serif'
 							position='absolute'
-							sx={{
-								textShadow: "1px 1px 1px #151515",
-							}}
+							sx={{ textShadow: "1px 1px 1px #151515" }}
 							textAlign='center'
 							textTransform='uppercase'
 							variant='h6'

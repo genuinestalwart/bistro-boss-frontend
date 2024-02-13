@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import SectionTitles from "@/components/shared/SectionTitles";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Box, Rating, Typography } from "@mui/material";
 import Quote from "@/components/shared/icons/Quote";
@@ -28,14 +26,11 @@ const Testimonials = () => {
 			/>
 
 			<Swiper
-				autoplay={{
-					delay: 4000,
-					disableOnInteraction: false,
-				}}
+				autoplay={{ delay: 4000, disableOnInteraction: false }}
 				modules={[Autoplay, Navigation]}
 				navigation={true}>
-				{reviews.map((review, index) => (
-					<SwiperSlide key={index}>
+				{reviews.map((review, i) => (
+					<SwiperSlide key={i}>
 						<Box
 							alignItems='center'
 							display='flex'

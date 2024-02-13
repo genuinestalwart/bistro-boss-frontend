@@ -18,7 +18,7 @@ import NavButton from "@/components/shared/buttons/NavButton";
 
 const dashNavItems = [
 	{ icon: <Home />, name: "Admin Home", path: "/dashboard" },
-	{ icon: <Restaurant />, name: "Add Items", path: "add-item" },
+	{ icon: <Restaurant />, name: "Add Item", path: "add-item" },
 	{
 		icon: <FormatListBulleted />,
 		name: "Manage Items",
@@ -31,11 +31,7 @@ const dashNavItems = [
 	},
 	{ icon: <Groups />, name: "All Users", path: "users" },
 	{ icon: <Home />, name: "User Home", path: "/dashboard" },
-	{
-		icon: <CalendarMonth />,
-		name: "Reservation",
-		path: "reservation",
-	},
+	{ icon: <CalendarMonth />, name: "Reservation", path: "reservation" },
 	{
 		icon: <AccountBalanceWallet />,
 		name: "Payment History",
@@ -56,11 +52,11 @@ const navItems = [
 const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 	const location = useLocation();
 
-	const navbar = (
+	const sidebar = (
 		<>
 			{dashNavItems
 				.slice(isAdmin ? 0 : 5, isAdmin ? 5 : 11)
-				.map((dashNavItem, index) => (
+				.map((dashNavItem, i) => (
 					<NavLink
 						caseSensitive
 						className={({ isActive }) =>
@@ -69,7 +65,7 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 							}`
 						}
 						end
-						key={index}
+						key={i}
 						state={{ from: location }}
 						to={dashNavItem.path}>
 						<NavButton
@@ -88,10 +84,10 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 				}}
 			/>
 
-			{navItems.map((navItem, index) => (
+			{navItems.map((navItem, i) => (
 				<Link
 					className='block'
-					key={index}
+					key={i}
 					state={{ from: location }}
 					to={navItem.path}>
 					<NavButton icon={navItem.icon} name={navItem.name} />
@@ -103,13 +99,11 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 	return (
 		<>
 			<Box component='nav' display={{ xs: "none", md: "block" }}>
-				{navbar}
+				{sidebar}
 			</Box>
 
 			<Drawer
-				classes={{
-					paper: "space-y-2",
-				}}
+				classes={{ paper: "space-y-2" }}
 				open={sidebarOpen}
 				onClose={() => setSidebarOpen(!sidebarOpen)}
 				sx={{
@@ -121,7 +115,7 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 						width: "80%",
 					},
 				}}>
-				{navbar}
+				{sidebar}
 			</Drawer>
 		</>
 	);

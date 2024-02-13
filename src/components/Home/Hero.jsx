@@ -8,15 +8,6 @@ import carouselSlide6 from "@/assets/home/carouselSlide6.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const carouselItems = [
-	{ image: carouselSlide1 },
-	{ image: carouselSlide2 },
-	{ image: carouselSlide3 },
-	{ image: carouselSlide4 },
-	{ image: carouselSlide5 },
-	{ image: carouselSlide6 },
-];
-
 const Hero = () => {
 	return (
 		<Box component='section'>
@@ -29,15 +20,19 @@ const Hero = () => {
 				showArrows={false}
 				showStatus={false}
 				stopOnHover={false}>
-				{carouselItems.map((carouselItem, index) => (
-					<Box
-						height='100vh'
-						key={index}
-						maxHeight={{ "2xl": "810px" }}>
+				{[
+					carouselSlide1,
+					carouselSlide2,
+					carouselSlide3,
+					carouselSlide4,
+					carouselSlide5,
+					carouselSlide6,
+				].map((image, i) => (
+					<Box height='100vh' key={i} maxHeight={{ "2xl": "810px" }}>
 						<img
 							alt='hero banner'
 							className='block h-full object-center object-cover w-full'
-							src={carouselItem.image}
+							src={image}
 						/>
 					</Box>
 				))}

@@ -24,11 +24,11 @@ const TodaysOffer = () => {
 						xs: "repeat(1, 1fr)",
 						md: "repeat(2, 1fr)",
 					}}>
-					{[0, 1, 2, 3, 4, 5].map((skeleton, index) => (
+					{[0, 1, 2, 3, 4, 5].map((skeleton, i) => (
 						<Skeleton
 							animation='wave'
 							height='6rem'
-							key={index}
+							key={i}
 							variant='rounded'
 						/>
 					))}

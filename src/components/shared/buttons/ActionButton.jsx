@@ -1,6 +1,11 @@
 import { Button } from "@mui/material";
 
-const ActionButton = ({ color, disabled = false, onClick, children }) => {
+const ActionButton = ({
+	color,
+	disabled = false,
+	onClick = () => {},
+	children,
+}) => {
 	return (
 		<Button
 			color={color}

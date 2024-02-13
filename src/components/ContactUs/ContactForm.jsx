@@ -1,34 +1,39 @@
 import { grey } from "@mui/material/colors";
-import { Box, Button, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import StyledButton from "@/components/shared/buttons/StyledButton";
+import InputField from "../shared/InputField";
 
-const fieldProps = [
+const fields = [
 	{
-		id: "name",
+		autoComplete: "name",
 		gridColumn: { md: "span 2 / span 2" },
+		id: "name",
 		label: "Name",
 		placeholder: "Enter your name",
 		type: "text",
 	},
 	{
+		autoComplete: "email",
 		id: "email",
 		label: "Email",
 		placeholder: "Enter your email",
 		type: "email",
 	},
 	{
+		autoComplete: "tel",
 		id: "phone",
 		label: "Phone",
 		placeholder: "Enter your phone number",
 		type: "tel",
 	},
 	{
-		id: "message",
 		gridColumn: { md: "span 2 / span 2" },
+		id: "message",
 		label: "Message",
 		multiline: true,
 		placeholder: "Write your message here",
-		rows: 8,
+		minRows: 8,
 	},
 ];
 
@@ -51,45 +56,17 @@ const ContactForm = () => {
 					xs: "repeat(1, 1fr)",
 					md: "repeat(2, 1fr)",
 				}}>
-				{fieldProps.map((fieldItem, index) => (
-					<TextField
-						autoComplete='on'
-						color='accent'
-						id={fieldItem.id}
-						key={index}
-						label={fieldItem.label}
-						multiline={fieldItem.multiline}
-						placeholder={fieldItem.placeholder}
-						required
-						rows={fieldItem.rows}
-						sx={{
-							bgcolor: "primary.main",
-							gridColumn: fieldItem.gridColumn || "auto",
-						}}
-						type={fieldItem.type}
-						variant='outlined'
-					/>
+				{fields.map((field, i) => (
+					<InputField field={field} key={i} />
 				))}
 			</Box>
 
-			<Button
-				color='accent'
+			<StyledButton
 				endIcon={<Send />}
-				sx={{
-					color: "secondary.main",
-					display: "flex",
-					fontFamily: "inherit",
-					fontWeight: 600,
-					mx: "auto",
-					"&:hover": {
-						bgcolor: "secondary.main",
-						color: "accent.main",
-					},
-				}}
-				type='submit'
-				variant='contained'>
+				sx={{ display: "flex", mx: "auto" }}
+				type='submit'>
 				Send Message
-			</Button>
+			</StyledButton>
 		</Box>
 	);
 };
