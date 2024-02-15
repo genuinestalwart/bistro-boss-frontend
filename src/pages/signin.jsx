@@ -1,53 +1,17 @@
 import { Box } from "@mui/material";
 import LoginLayout from "@/layouts/LoginLayout";
-import {
-	loadCaptchaEnginge,
-	LoadCanvasTemplate,
-	validateCaptcha,
-} from "react-simple-captcha";
+import { loadCaptchaEnginge, LoadCanvasTemplate } from "react-simple-captcha";
 import { useContext, useEffect } from "react";
 import { grey } from "@mui/material/colors";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "@/providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StyledButton from "@/components/shared/buttons/StyledButton";
 import InputField from "@/components/shared/InputField";
+import { fields } from "@/utilities/SigninPage";
 
-const fields = [
-	{
-		autoComplete: "email",
-		fullWidth: true,
-		id: "email",
-		helperText: "",
-		label: "Email",
-		type: "email",
-		validation: {
-			pattern:
-				/^([a-z0-9]+(\.[^\WA-Z_]+)*){6,30}@((([a-z0-9-](?!--)){3,}\.)+[a-z]{2,})$/,
-		},
-	},
-	{
-		autoComplete: "new-password",
-		fullWidth: true,
-		id: "password",
-		helperText: "",
-		label: "Password",
-		type: "password",
-		validation: { minLength: 8 },
-	},
-	{
-		fullWidth: true,
-		id: "captcha",
-		helperText: "Incorrect captcha. Please try again.",
-		placeholder: "Write the captcha here",
-		type: "text",
-		validation: { validate: (value) => validateCaptcha(value, false) },
-	},
-];
-
-const SignInPage = () => {
-	const location = useLocation();
+const SigninPage = () => {
 	const navigate = useNavigate();
 	const { loading, user, loginUser } = useContext(AuthContext);
 
@@ -57,16 +21,13 @@ const SignInPage = () => {
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = (data) => {
-		loginUser(data.email, data.password).then(() => {
-			navigate("/dashboard", { state: { from: location } });
-		});
+	const onSubmit = async (data) => {
+		await loginUser(data.email, data.password);
+		navigate("/dashboard");
 	};
 
 	useEffect(() => {
-		if (!loading && !user) {
-			loadCaptchaEnginge(6);
-		}
+		!loading && !user && loadCaptchaEnginge(6);
 	}, [loading, user]);
 
 	return (
@@ -117,4 +78,4 @@ const SignInPage = () => {
 	);
 };
 
-export default SignInPage;
+export default SigninPage;

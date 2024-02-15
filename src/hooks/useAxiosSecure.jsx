@@ -1,14 +1,13 @@
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
 	baseURL: "https://gs-bistro-boss-backend.vercel.app",
 });
 
 const useAxiosSecure = () => {
-	const location = useLocation();
 	const navigate = useNavigate();
 	const { logOut } = useContext(AuthContext);
 
@@ -21,20 +20,15 @@ const useAxiosSecure = () => {
 
 				return config;
 			},
-
 			(error) => Promise.reject(error)
 		);
 
 		const secureTheResponse = axiosSecure.interceptors.response.use(
 			(response) => response,
-
 			async (error) => {
-				if (
-					error.response.status === 401 ||
-					error.response.status == 403
-				) {
+				if ([401, 403].includes(error.response.status)) {
 					await logOut();
-					navigate("/signin", { state: { from: location } });
+					navigate("/signin");
 				}
 
 				return Promise.reject(error);
@@ -45,7 +39,7 @@ const useAxiosSecure = () => {
 			axiosSecure.interceptors.request.eject(secureTheRequest);
 			axiosSecure.interceptors.response.eject(secureTheResponse);
 		};
-	}, [location, logOut, navigate]);
+	}, [logOut, navigate]);
 
 	return axiosSecure;
 };

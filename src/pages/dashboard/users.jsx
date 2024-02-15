@@ -5,13 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import DashTable from "@/components/Dashboard/DashTable";
 import UserRow from "@/components/Dashboard/rows/UserRow";
-
 const headerCells = ["", "Name", "Email", "Role", "Delete"];
 
 const AllUsersPage = () => {
 	const axiosSecure = useAxiosSecure();
 
-	const { data: users = [], refetch } = useQuery({
+	const {
+		data: users = [],
+		isLoading,
+		refetch,
+	} = useQuery({
 		queryKey: ["users"],
 		queryFn: async () => {
 			const res = await axiosSecure.get("/users");
@@ -20,7 +23,7 @@ const AllUsersPage = () => {
 	});
 
 	return (
-		<Box className='space-y-12' py={12}>
+		<>
 			<Helmet>
 				<title>Bistro Boss | All Users</title>
 			</Helmet>
@@ -35,6 +38,7 @@ const AllUsersPage = () => {
 
 			<DashTable
 				headerCells={headerCells}
+				isLoading={isLoading}
 				summary={
 					<Typography
 						component='h3'
@@ -45,9 +49,9 @@ const AllUsersPage = () => {
 					</Typography>
 				}
 				tableName='all users'>
-				<UserRow refetch={refetch} users={users} />
+				<UserRow refetch={refetch} users={users.toReversed()} />
 			</DashTable>
-		</Box>
+		</>
 	);
 };
 

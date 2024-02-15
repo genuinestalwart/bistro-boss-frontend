@@ -11,9 +11,7 @@ const TabChanger = ({ activeTab, setActiveTab }) => {
 	return (
 		<Tabs
 			aria-label='shop tabs'
-			onChange={(event, newValue) => {
-				setActiveTab(newValue);
-			}}
+			onChange={(e, newValue) => setActiveTab(newValue)}
 			sx={{
 				"& .MuiTabs-flexContainer": {
 					justifyContent: { md: "center" },

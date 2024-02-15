@@ -16,6 +16,7 @@ const InputField = ({
 			fullWidth={field.fullWidth}
 			helperText={errors[field.id] ? field.helperText : ""}
 			id={field.id}
+			inputProps={field.inputProps}
 			label={field.label}
 			minRows={field.minRows}
 			multiline={field.multiline}

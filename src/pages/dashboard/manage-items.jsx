@@ -5,14 +5,21 @@ import DashTable from "@/components/Dashboard/DashTable";
 import useMenu from "@/hooks/useMenu";
 import ItemRow from "@/components/Dashboard/rows/ItemRow";
 import { useContext, useState } from "react";
-import EditItemForm from "@/components/Dashboard/forms/EditItemForm";
 import { ModalContext } from "@/providers/ModalProvider";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import ItemForm from "@/components/Dashboard/forms/ItemForm";
 const headerCells = ["", "Image", "Name", "Price", "Edit", "Delete"];
+const apiKey = import.meta.env.VITE_imgbb_api_key;
+const url = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
 const ManageItemsPage = () => {
 	const [openEdit, setOpenEdit] = useState(false);
 	const [editingItem, setEditingItem] = useState({});
-	const [items, , refetch] = useMenu();
+	const [image, setImage] = useState(null);
+	const [items, isLoading, refetch] = useMenu();
+	const axiosPublic = useAxiosPublic();
+	const axiosSecure = useAxiosSecure();
 	const { modal } = useContext(ModalContext);
 
 	const handleOpen = (item) => {
@@ -25,20 +32,59 @@ const ManageItemsPage = () => {
 		setEditingItem({});
 	};
 
-	const onSubmit = (data) => {
+	const handleUpload = async () => {
+		let link = editingItem.image;
+
+		try {
+			if (image) {
+				const res = await axiosPublic.post(
+					url,
+					{ image },
+					{ headers: { "Content-Type": "multipart/form-data" } }
+				);
+
+				link = res.data.data.url;
+			}
+		} catch (error) {
+			link = false;
+		}
+
+		return link;
+	};
+
+	const onSubmit = async (data) => {
+		const newItem = {
+			category: data.category,
+			name: data.name,
+			price: parseFloat(data.price),
+			recipe: data.recipe,
+			sourceUrl: data.sourceUrl,
+			type: data.type,
+		};
+
 		modal({
 			buttonText: "Update",
 			color: "success",
-			title: "Update The Item Details",
 			description: `Are you sure you want to save the changes?`,
-			onClick: () => {
-				console.log(data);
+			onClick: async () => {
+				const link = await handleUpload();
+
+				if (link) {
+					await axiosSecure.patch(`/menu/${editingItem._id}`, {
+						image: link,
+						...newItem,
+					});
+
+					refetch();
+					setOpenEdit(false);
+				}
 			},
+			title: "Update The Item Details",
 		});
 	};
 
 	return (
-		<Box className='space-y-12' py={12}>
+		<>
 			<Helmet>
 				<title>Bistro Boss | Manage Items</title>
 			</Helmet>
@@ -52,14 +98,17 @@ const ManageItemsPage = () => {
 			</Box>
 
 			{openEdit ? (
-				<EditItemForm
-					item={editingItem}
+				<ItemForm
+					editMode={true}
 					handleClose={handleClose}
+					item={editingItem}
 					onSubmit={onSubmit}
+					setImage={setImage}
 				/>
 			) : (
 				<DashTable
 					headerCells={headerCells}
+					isLoading={isLoading}
 					summary={
 						<Typography
 							component='h3'
@@ -70,10 +119,14 @@ const ManageItemsPage = () => {
 						</Typography>
 					}
 					tableName='manage items'>
-					<ItemRow items={items} handleOpen={handleOpen} />
+					<ItemRow
+						items={items.toReversed()}
+						handleOpen={handleOpen}
+						refetch={refetch}
+					/>
 				</DashTable>
 			)}
-		</Box>
+		</>
 	);
 };
 

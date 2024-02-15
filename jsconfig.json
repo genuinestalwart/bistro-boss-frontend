@@ -3,10 +3,7 @@
 		"baseUrl": ".",
 		"isolatedModules": true,
 		"jsx": "react-jsx",
-		"paths": {
-			"@/*": ["./src/*"]
-		},
-
+		"paths": { "@/*": ["./src/*"] },
 		"resolveJsonModule": true
 	}
 }

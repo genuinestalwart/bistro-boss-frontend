@@ -42,7 +42,7 @@ const OrderOnline = () => {
 					<SwiperSlide className='relative' key={i}>
 						<img
 							alt={swiperItem.name}
-							className='block rounded-md w-full'
+							className='rounded-md w-full'
 							src={swiperItem.image}
 						/>
 

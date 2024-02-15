@@ -6,8 +6,15 @@ import {
 	TableHead,
 	TableRow,
 } from "@mui/material";
+import DataLoading from "@/components/shared/DataLoading";
 
-const DashTable = ({ children, headerCells, summary, tableName }) => {
+const DashTable = ({
+	children,
+	headerCells,
+	isLoading,
+	summary,
+	tableName,
+}) => {
 	return (
 		<TableContainer
 			className='space-y-6'
@@ -19,24 +26,30 @@ const DashTable = ({ children, headerCells, summary, tableName }) => {
 			}}>
 			{summary}
 
-			<Table aria-label={tableName} stickyHeader>
-				<TableHead>
-					<TableRow
-						sx={{
-							bgcolor: "accent.main",
-							textTransform: "uppercase",
-							"& .MuiTableCell-root": { bgcolor: "transparent" },
-						}}>
-						{headerCells.map((text, i) => (
-							<TableCell align='center' key={i}>
-								{text}
-							</TableCell>
-						))}
-					</TableRow>
-				</TableHead>
+			{isLoading ? (
+				<DataLoading />
+			) : (
+				<Table aria-label={tableName} stickyHeader>
+					<TableHead>
+						<TableRow
+							sx={{
+								bgcolor: "accent.main",
+								textTransform: "uppercase",
+								"& .MuiTableCell-root": {
+									bgcolor: "transparent",
+								},
+							}}>
+							{headerCells.map((text, i) => (
+								<TableCell align='center' key={i}>
+									{text}
+								</TableCell>
+							))}
+						</TableRow>
+					</TableHead>
 
-				<TableBody>{children}</TableBody>
-			</Table>
+					<TableBody>{children}</TableBody>
+				</Table>
+			)}
 		</TableContainer>
 	);
 };

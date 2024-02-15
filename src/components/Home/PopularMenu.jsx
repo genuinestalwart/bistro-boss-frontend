@@ -1,14 +1,13 @@
 import MenuItems from "@/components/Menu/MenuItems";
 import SectionTitles from "@/components/shared/SectionTitles";
-import { Box, Skeleton } from "@mui/material";
+import { Box } from "@mui/material";
 import BorderButton from "@/components/shared/buttons/BorderButton";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useMenu from "@/hooks/useMenu";
 
 const PopularMenu = () => {
 	const [data, loading] = useMenu();
 	const menu = data.filter((item) => item.type === "popular");
-	const location = useLocation();
 
 	return (
 		<Box
@@ -18,28 +17,12 @@ const PopularMenu = () => {
 			width={{ xs: "80%", md: "75%" }}>
 			<SectionTitles bigTitle='From Our Menu' smallTitle='Check it out' />
 
-			{loading ? (
-				<Box
-					display='grid'
-					gap={6}
-					gridTemplateColumns={{
-						xs: "repeat(1, 1fr)",
-						md: "repeat(2, 1fr)",
-					}}>
-					{[0, 1, 2, 3, 4, 5].map((skeleton, i) => (
-						<Skeleton
-							animation='wave'
-							height='6rem'
-							key={i}
-							variant='rounded'
-						/>
-					))}
-				</Box>
-			) : (
-				<MenuItems items={menu} />
-			)}
+			<MenuItems
+				items={loading ? [0, 1, 2, 3, 4, 5] : menu}
+				loading={loading}
+			/>
 
-			<Link className='block' state={{ from: location }} to='/menu'>
+			<Link className='block' to='/menu'>
 				<BorderButton
 					sxProps={{
 						bgcolor: "transparent",

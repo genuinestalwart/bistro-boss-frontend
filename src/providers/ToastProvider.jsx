@@ -5,16 +5,11 @@ export const ToastContext = createContext(null);
 const ToastProvider = ({ children }) => {
 	const [open, setOpen] = useState(false);
 	const [data, setData] = useState({});
+	const handleClose = (e, reason) => reason !== "clickaway" && setOpen(false);
 
 	const toast = (message) => {
 		setOpen(true);
 		return setData(message);
-	};
-
-	const handleClose = (event, reason) => {
-		if (reason !== "clickaway") {
-			setOpen(false);
-		}
 	};
 
 	return (

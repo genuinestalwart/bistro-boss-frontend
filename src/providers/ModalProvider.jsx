@@ -22,6 +22,13 @@ const ModalProvider = ({ children }) => {
 		return setData(message);
 	};
 
+	const handleClick = async () => {
+		setOpen(false);
+		setLoading(true);
+		await data.onClick();
+		setLoading(false);
+	};
+
 	return (
 		<ModalContext.Provider value={{ modal }}>
 			{children}
@@ -58,12 +65,7 @@ const ModalProvider = ({ children }) => {
 						color={data.color}
 						sx={{ fontFamily: "inherit", fontWeight: 600 }}
 						variant='contained'
-						onClick={async () => {
-							setOpen(false);
-							setLoading(true);
-							await data.onClick();
-							setLoading(false);
-						}}>
+						onClick={handleClick}>
 						{data.buttonText}
 					</Button>
 				</DialogActions>

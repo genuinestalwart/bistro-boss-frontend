@@ -13,10 +13,10 @@ const UserRow = ({ refetch, users }) => {
 		modal({
 			buttonText: "Update",
 			color: "success",
-			title: "Update Role To Admin",
-			description: `Are you sure you want to make ${name} an admin?`,
+			description: `Are you sure you want to make "${name}" an admin?`,
 			onClick: () =>
 				axiosSecure.patch(`/users/admin/${id}`).then(() => refetch()),
+			title: "Update Role To Admin",
 		});
 	};
 
@@ -24,10 +24,10 @@ const UserRow = ({ refetch, users }) => {
 		modal({
 			buttonText: "Delete",
 			color: "error",
-			title: "Delete User!",
-			description: `This action is irreversible and will delete all data of ${name}.`,
+			description: `This action is irreversible and will delete all data of "${name}".`,
 			onClick: () =>
 				axiosSecure.delete(`/users/${id}`).then(() => refetch()),
+			title: "Delete User!",
 		});
 	};
 
@@ -46,11 +46,7 @@ const UserRow = ({ refetch, users }) => {
 						<ActionButton
 							color='accent'
 							disabled={user.role === "admin"}
-							onClick={() => {
-								if (user.role !== "admin") {
-									handleAdmin(user._id, user.name);
-								}
-							}}>
+							onClick={() => handleAdmin(user._id, user.name)}>
 							{user.role === "admin" ? <Security /> : <Groups />}
 						</ActionButton>
 					</TableCell>
@@ -59,11 +55,7 @@ const UserRow = ({ refetch, users }) => {
 						<ActionButton
 							color='error'
 							disabled={user.role === "admin"}
-							onClick={() => {
-								if (user.role !== "admin") {
-									handleDelete(user._id, user.name);
-								}
-							}}>
+							onClick={() => handleDelete(user._id, user.name)}>
 							{user.role === "admin" ? <Lock /> : <Delete />}
 						</ActionButton>
 					</TableCell>

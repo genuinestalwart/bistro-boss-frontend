@@ -1,79 +1,26 @@
-import {
-	AccountBalanceWallet,
-	CalendarMonth,
-	Email,
-	FormatListBulleted,
-	Groups,
-	Home,
-	LibraryBooks,
-	PlayLesson,
-	RateReview,
-	Restaurant,
-	ShoppingBag,
-	ShoppingCart,
-} from "@mui/icons-material";
 import { Box, Divider, Drawer } from "@mui/material";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import NavButton from "@/components/shared/buttons/NavButton";
-
-const dashNavItems = [
-	{ icon: <Home />, name: "Admin Home", path: "/dashboard" },
-	{ icon: <Restaurant />, name: "Add Item", path: "add-item" },
-	{
-		icon: <FormatListBulleted />,
-		name: "Manage Items",
-		path: "manage-items",
-	},
-	{
-		icon: <LibraryBooks />,
-		name: "Manage Bookings",
-		path: "manage-bookings",
-	},
-	{ icon: <Groups />, name: "All Users", path: "users" },
-	{ icon: <Home />, name: "User Home", path: "/dashboard" },
-	{ icon: <CalendarMonth />, name: "Reservation", path: "reservation" },
-	{
-		icon: <AccountBalanceWallet />,
-		name: "Payment History",
-		path: "payment",
-	},
-	{ icon: <ShoppingCart />, name: "My Cart", path: "cart" },
-	{ icon: <RateReview />, name: "My Review", path: "review" },
-	{ icon: <PlayLesson />, name: "My Booking", path: "booking" },
-];
-
-const navItems = [
-	{ icon: <Home />, name: "Home", path: "/" },
-	{ icon: <Restaurant />, name: "Our Menu", path: "/menu" },
-	{ icon: <ShoppingBag />, name: "Our Shop", path: "/shop" },
-	{ icon: <Email />, name: "Contact Us", path: "/contact-us" },
-];
+import { dashNavItems, navItems } from "@/utilities/Sidebar";
 
 const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
-	const location = useLocation();
-
 	const sidebar = (
 		<>
-			{dashNavItems
-				.slice(isAdmin ? 0 : 5, isAdmin ? 5 : 11)
-				.map((dashNavItem, i) => (
-					<NavLink
-						caseSensitive
-						className={({ isActive }) =>
-							`block ${
-								isActive ? "text-primary" : "text-secondary"
-							}`
-						}
-						end
-						key={i}
-						state={{ from: location }}
-						to={dashNavItem.path}>
-						<NavButton
-							icon={dashNavItem.icon}
-							name={dashNavItem.name}
-						/>
-					</NavLink>
-				))}
+			{dashNavItems[isAdmin ? 0 : 1].map((dashNavItem, i) => (
+				<NavLink
+					caseSensitive
+					className={({ isActive }) =>
+						`block ${isActive ? "text-primary" : "text-secondary"}`
+					}
+					end
+					key={i}
+					to={dashNavItem.path}>
+					<NavButton
+						icon={dashNavItem.icon}
+						name={dashNavItem.name}
+					/>
+				</NavLink>
+			))}
 
 			<Divider
 				aria-hidden={true}
@@ -85,11 +32,7 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 			/>
 
 			{navItems.map((navItem, i) => (
-				<Link
-					className='block'
-					key={i}
-					state={{ from: location }}
-					to={navItem.path}>
+				<Link className='block' key={i} to={navItem.path}>
 					<NavButton icon={navItem.icon} name={navItem.name} />
 				</Link>
 			))}

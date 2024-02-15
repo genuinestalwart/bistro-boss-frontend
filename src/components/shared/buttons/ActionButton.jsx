@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
 
 const ActionButton = ({
+	children,
 	color,
 	disabled = false,
 	onClick = () => {},
-	children,
 }) => {
 	return (
 		<Button

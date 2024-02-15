@@ -31,7 +31,7 @@ const Featured = () => {
 						justifyContent='space-between'>
 						<img
 							alt='featured food'
-							className='block h-auto rounded w-full md:w-[45%]'
+							className='h-auto rounded w-full md:w-[45%]'
 							src={featuredFood}
 						/>
 

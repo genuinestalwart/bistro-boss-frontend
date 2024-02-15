@@ -1,6 +1,6 @@
 import MenuItems from "@/components/Menu/MenuItems";
 import SectionTitles from "@/components/shared/SectionTitles";
-import { Box, Skeleton } from "@mui/material";
+import { Box } from "@mui/material";
 import BorderButton from "@/components/shared/buttons/BorderButton";
 import useMenu from "@/hooks/useMenu";
 
@@ -16,26 +16,10 @@ const TodaysOffer = () => {
 			width={{ xs: "80%", md: "75%" }}>
 			<SectionTitles bigTitle="Today's Offer" smallTitle="Don't miss" />
 
-			{loading ? (
-				<Box
-					display='grid'
-					gap={6}
-					gridTemplateColumns={{
-						xs: "repeat(1, 1fr)",
-						md: "repeat(2, 1fr)",
-					}}>
-					{[0, 1, 2, 3, 4, 5].map((skeleton, i) => (
-						<Skeleton
-							animation='wave'
-							height='6rem'
-							key={i}
-							variant='rounded'
-						/>
-					))}
-				</Box>
-			) : (
-				<MenuItems items={menu} />
-			)}
+			<MenuItems
+				items={loading ? [0, 1, 2, 3, 4, 5] : menu}
+				loading={loading}
+			/>
 
 			<BorderButton
 				sxProps={{

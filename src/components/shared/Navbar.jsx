@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
 	Badge,
 	Box,
@@ -21,15 +21,12 @@ const navItems = [
 ];
 
 const Navbar = ({ navbarOpen, setNavbarOpen }) => {
-	const location = useLocation();
 	const [cart] = useCart();
 	const { loading, logOut, user } = useContext(AuthContext);
 
-	const navbar = navItems.map((navItem, i) => {
-		if (navItem.private && !user) {
-			return;
-		} else {
-			return (
+	const navbar = navItems.map(
+		(navItem, i) =>
+			!(navItem.private && !user) && (
 				<NavLink
 					caseSensitive
 					className={({ isActive }) =>
@@ -43,13 +40,11 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 					}
 					end
 					key={i}
-					state={{ from: location }}
 					to={navItem.path}>
 					{navItem.name}
 				</NavLink>
-			);
-		}
-	});
+			)
+	);
 
 	return (
 		<Box
@@ -86,19 +81,13 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						<ShoppingCart color='primary' />
 					</IconButton>
 
-					<Link
-						className='block'
-						state={{ from: location }}
-						to='/signin'>
+					<Link className='block' to='/signin'>
 						<StyledButton>Log In</StyledButton>
 					</Link>
 				</>
 			) : (
 				<>
-					<Link
-						className='block'
-						state={{ from: location }}
-						to='/dashboard/cart'>
+					<Link className='block' to='/dashboard/cart'>
 						<IconButton aria-label='cart'>
 							<Badge badgeContent={cart.length} color='accent'>
 								<ShoppingCart color='primary' />

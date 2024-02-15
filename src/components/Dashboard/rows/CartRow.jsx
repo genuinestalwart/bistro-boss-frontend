@@ -6,9 +6,8 @@ import ActionButton from "@/components/shared/buttons/ActionButton";
 const CartRow = ({ cart, refetch }) => {
 	const axiosSecure = useAxiosSecure();
 
-	const handleDelete = (id) => {
+	const handleDelete = (id) =>
 		axiosSecure.delete(`/carts/${id}`).then(() => refetch());
-	};
 
 	return (
 		<>

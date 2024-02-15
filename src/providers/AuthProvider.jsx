@@ -20,28 +20,32 @@ const AuthProvider = ({ children }) => {
 	const googleProvider = new GoogleAuthProvider();
 	const axiosPublic = useAxiosPublic();
 	const { toast } = useContext(ToastContext);
+	const updateUser = (info) => updateProfile(auth.currentUser, info);
+	const verifyEmail = () => sendEmailVerification(auth.currentUser);
 
-	const createUser = (email, password) => {
+	const createUser = async (email, password) => {
 		setLoading(true);
 
-		return createUserWithEmailAndPassword(auth, email, password).catch(
-			() => {
-				setLoading(false);
+		try {
+			return await createUserWithEmailAndPassword(auth, email, password);
+		} catch {
+			setLoading(false);
 
-				toast({
-					title: "Email Address Already Taken!",
-					type: "error",
-					position: { horizontal: "right", vertical: "bottom" },
-					description:
-						"Someone has already signed up using this email address. If that's you, please sign in instead.",
-				});
-			}
-		);
+			toast({
+				title: "Email Address Already Taken!",
+				type: "error",
+				position: { horizontal: "right", vertical: "bottom" },
+				description:
+					"Someone has already signed up using this email address. If that's you, please sign in instead.",
+			});
+		}
 	};
-	const loginUser = (email, password) => {
+	const loginUser = async (email, password) => {
 		setLoading(true);
 
-		return signInWithEmailAndPassword(auth, email, password).catch(() => {
+		try {
+			return await signInWithEmailAndPassword(auth, email, password);
+		} catch {
 			setLoading(false);
 
 			toast({
@@ -51,52 +55,39 @@ const AuthProvider = ({ children }) => {
 				description:
 					"The email and password you entered doesn't match. Either your password is wrong or the email was never registered on our website. Try checking the spelling again.",
 			});
-		});
+		}
 	};
 
-	const loginWithGoogle = () => {
+	const loginWithGoogle = async () => {
 		setLoading(true);
-		return signInWithPopup(auth, googleProvider);
+		return await signInWithPopup(auth, googleProvider);
 	};
 
-	const logOut = () => {
+	const logOut = async () => {
 		setLoading(true);
-		return signOut(auth);
-	};
-
-	const updateUser = (info) => {
-		return updateProfile(auth.currentUser, info);
-	};
-
-	const verifyEmail = () => {
-		return sendEmailVerification(auth.currentUser);
+		return await signOut(auth);
 	};
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
 
-			if (currentUser) {
-				axiosPublic
-					.post("/auth", { email: currentUser.email })
-					.then((res) => {
-						if (res.data.token) {
-							localStorage.setItem(
-								"access-token",
-								res.data.token
-							);
-						}
-					});
-			} else {
-				localStorage.removeItem("access-token");
-			}
+			currentUser
+				? axiosPublic
+						.post("/auth", { email: currentUser.email })
+						.then((res) => {
+							res.data.token &&
+								localStorage.setItem(
+									"access-token",
+									res.data.token
+								);
+						})
+				: localStorage.removeItem("access-token");
 
 			setLoading(false);
 		});
 
-		return () => {
-			return unsubscribe();
-		};
+		return () => unsubscribe();
 	}, [axiosPublic]);
 
 	return (

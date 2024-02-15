@@ -1,13 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import loginBanner from "@/assets/banners/login.png";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import LoginWith from "@/components/shared/LoginWith";
+import LoginWith from "@/components/login/LoginWith";
 import PageLoading from "@/components/shared/PageLoading";
 
 const LoginLayout = ({ login, children }) => {
-	const location = useLocation();
 	const { loading, user } = useContext(AuthContext);
 
 	return loading ? (
@@ -37,7 +36,7 @@ const LoginLayout = ({ login, children }) => {
 				}}>
 				<img
 					alt='login banner'
-					className='block w-full md:w-2/5'
+					className='w-full md:w-2/5'
 					src={loginBanner}
 				/>
 
@@ -60,7 +59,6 @@ const LoginLayout = ({ login, children }) => {
 						{login ? "New here?" : "Already registered?"}{" "}
 						<Link
 							className='font-bold hover:underline underline-offset-2'
-							state={{ from: location }}
 							to={login ? "/signup" : "/signin"}>
 							{login ? "Create a New Account" : "Go to sign in"}
 						</Link>
@@ -78,7 +76,7 @@ const LoginLayout = ({ login, children }) => {
 			</Box>
 		</Box>
 	) : (
-		<Navigate state={{ from: location }} to='/dashboard' />
+		<Navigate to='/dashboard' />
 	);
 };
 

@@ -31,7 +31,7 @@ const Hero = () => {
 					<Box height='100vh' key={i} maxHeight={{ "2xl": "810px" }}>
 						<img
 							alt='hero banner'
-							className='block h-full object-center object-cover w-full'
+							className='h-full object-center object-cover w-full'
 							src={image}
 						/>
 					</Box>

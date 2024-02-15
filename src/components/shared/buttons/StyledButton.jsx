@@ -4,7 +4,7 @@ const StyledButton = ({
 	color,
 	children,
 	endIcon,
-	onClick,
+	onClick = () => {},
 	size,
 	sx,
 	type,

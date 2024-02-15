@@ -1,13 +1,11 @@
 import { Box } from "@mui/material";
 import error404 from "@/assets/others/404.gif";
 import { Home } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import StyledButton from "@/components/shared/buttons/StyledButton";
 
 const NotFound = () => {
-	const location = useLocation();
-
 	return (
 		<Box
 			className='space-y-4'
@@ -22,11 +20,11 @@ const NotFound = () => {
 
 			<img
 				alt='cupcake'
-				className='block mx-auto sm:w-1/2 md:w-1/3'
+				className='mx-auto sm:w-1/2 md:w-1/3'
 				src={error404}
 			/>
 
-			<Link className='block' state={{ from: location }} to='/'>
+			<Link className='block' to='/'>
 				<StyledButton
 					endIcon={<Home />}
 					sx={{ display: "flex", mx: "auto" }}>

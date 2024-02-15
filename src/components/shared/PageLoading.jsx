@@ -12,7 +12,7 @@ const PageLoading = () => {
 			maxHeight={{ "2xl": "810px" }}>
 			<img
 				alt='cupcake'
-				className='block mx-auto sm:w-1/2 md:w-1/3'
+				className='mx-auto sm:w-1/2 md:w-1/3'
 				src={cupcake}
 			/>
 

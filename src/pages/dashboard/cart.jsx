@@ -9,7 +9,7 @@ import StyledButton from "@/components/shared/buttons/StyledButton";
 const headerCells = ["", "Image", "Name", "Price", "Remove"];
 
 const MyCartPage = () => {
-	const [cart, refetch] = useCart();
+	const [cart, isLoading, refetch] = useCart();
 	const [totalPrice, setTotalPrice] = useState(0);
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ const MyCartPage = () => {
 	}, [cart]);
 
 	return (
-		<Box className='space-y-12' py={12}>
+		<>
 			<Helmet>
 				<title>Bistro Boss | My Cart</title>
 			</Helmet>
@@ -34,6 +34,7 @@ const MyCartPage = () => {
 
 			<DashTable
 				headerCells={headerCells}
+				isLoading={isLoading}
 				summary={
 					<Box
 						alignItems='center'
@@ -57,9 +58,9 @@ const MyCartPage = () => {
 					</Box>
 				}
 				tableName='my cart'>
-				<CartRow cart={cart} refetch={refetch} />
+				<CartRow cart={cart.toReversed()} refetch={refetch} />
 			</DashTable>
-		</Box>
+		</>
 	);
 };
 

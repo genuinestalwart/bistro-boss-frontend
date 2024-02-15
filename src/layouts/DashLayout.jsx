@@ -9,44 +9,34 @@ import useAdmin from "@/hooks/useAdmin";
 import NotFound from "@/components/shared/NotFound";
 
 const adminRoutes = [
-	"/dashboard",
 	"/dashboard/add-item",
 	"/dashboard/manage-items",
 	"/dashboard/manage-bookings",
 	"/dashboard/users",
 ];
 
-const userRoutes = [
-	"/dashboard",
-	"/dashboard/reservation",
-	"/dashboard/payment",
-	"/dashboard/cart",
-	"/dashboard/review",
-	"/dashboard/booking",
-];
-
 const DashLayout = () => {
 	const [isAdminRoute, setIsAdminRoute] = useState(false);
-	const [isUserRoute, setIsUserRoute] = useState(false);
 	const location = useLocation();
 	const [isAdmin, isLoading] = useAdmin();
 	const { loading, user } = useContext(AuthContext);
 
 	useEffect(() => {
 		setIsAdminRoute(adminRoutes.includes(location.pathname));
-		setIsUserRoute(userRoutes.includes(location.pathname));
 	}, [location.pathname]);
 
 	return loading || isLoading ? (
 		<PageLoading />
-	) : user && ((isAdmin && isAdminRoute) || (!isAdmin && isUserRoute)) ? (
+	) : user && (!isAdminRoute || isAdmin) ? (
 		<Box display={{ md: "flex" }} height={{ md: "100vh" }}>
 			<DashHeader isAdmin={isAdmin} />
 
 			<Box
 				bgcolor={grey[100]}
+				className='space-y-12'
 				component='main'
 				height={{ md: "100%" }}
+				py={8}
 				sx={{ overflowY: { md: "auto" } }}
 				width={{ md: "70%", lg: "75%" }}>
 				<Outlet />
@@ -55,7 +45,7 @@ const DashLayout = () => {
 	) : user ? (
 		<NotFound />
 	) : (
-		<Navigate state={{ from: location }} to='/signin' />
+		<Navigate to='/signin' />
 	);
 };
 

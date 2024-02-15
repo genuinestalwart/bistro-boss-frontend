@@ -15,6 +15,9 @@ const useAdmin = () => {
 				setIsAdmin(res.data?.isAdmin);
 				setIsLoading(false);
 			});
+		} else if (!loading && !user) {
+			setIsAdmin(false);
+			setIsLoading(false);
 		}
 	}, [axiosSecure, loading, token, user]);
 

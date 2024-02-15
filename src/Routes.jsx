@@ -6,8 +6,8 @@ import HomePage from "@/pages/home";
 import MenuPage from "@/pages/menu";
 import ShopPage from "@/pages/shop";
 import ContactUsPage from "@/pages/contact-us";
-import SignInPage from "@/pages/signin";
-import SignUpPage from "@/pages/signup";
+import SigninPage from "@/pages/signin";
+import SignupPage from "@/pages/signup";
 import DashHomePage from "@/pages/dashboard/home";
 import AddItemPage from "@/pages/dashboard/add-item";
 import ManageItemsPage from "@/pages/dashboard/manage-items";
@@ -24,80 +24,29 @@ export const router = createBrowserRouter([
 		path: "/",
 		element: <RootLayout />,
 		children: [
-			{
-				path: "/",
-				element: <HomePage />,
-			},
-			{
-				path: "menu",
-				element: <MenuPage />,
-			},
-			{
-				path: "shop",
-				element: <ShopPage />,
-			},
-			{
-				path: "contact-us",
-				element: <ContactUsPage />,
-			},
+			{ path: "/", element: <HomePage /> },
+			{ path: "menu", element: <MenuPage /> },
+			{ path: "shop", element: <ShopPage /> },
+			{ path: "contact-us", element: <ContactUsPage /> },
 		],
 	},
 	{
 		path: "dashboard",
 		element: <DashLayout />,
 		children: [
-			{
-				path: "/dashboard",
-				element: <DashHomePage />,
-			},
-			{
-				path: "add-item",
-				element: <AddItemPage />,
-			},
-			{
-				path: "manage-items",
-				element: <ManageItemsPage />,
-			},
-			{
-				path: "manage-bookings",
-				element: <ManageBookingsPage />,
-			},
-			{
-				path: "users",
-				element: <AllUsersPage />,
-			},
-			{
-				path: "reservation",
-				element: <ReservationPage />,
-			},
-			{
-				path: "payment",
-				element: <PaymentPage />,
-			},
-			{
-				path: "cart",
-				element: <MyCartPage />,
-			},
-			{
-				path: "review",
-				element: <AddReviewPage />,
-			},
-			{
-				path: "booking",
-				element: <MyBookingPage />,
-			},
+			{ path: "/dashboard", element: <DashHomePage /> },
+			{ path: "add-item", element: <AddItemPage /> },
+			{ path: "manage-items", element: <ManageItemsPage /> },
+			{ path: "manage-bookings", element: <ManageBookingsPage /> },
+			{ path: "users", element: <AllUsersPage /> },
+			{ path: "reservation", element: <ReservationPage /> },
+			{ path: "payment", element: <PaymentPage /> },
+			{ path: "cart", element: <MyCartPage /> },
+			{ path: "review", element: <AddReviewPage /> },
+			{ path: "booking", element: <MyBookingPage /> },
 		],
 	},
-	{
-		path: "signin",
-		element: <SignInPage />,
-	},
-	{
-		path: "signup",
-		element: <SignUpPage />,
-	},
-	{
-		path: "*",
-		element: <NotFound />,
-	},
+	{ path: "signin", element: <SigninPage /> },
+	{ path: "signup", element: <SignupPage /> },
+	{ path: "*", element: <NotFound /> },
 ]);
