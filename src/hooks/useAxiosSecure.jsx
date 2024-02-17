@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-	baseURL: "https://gs-bistro-boss-backend.vercel.app",
+	baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {

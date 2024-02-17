@@ -32,7 +32,7 @@ const DashLayout = () => {
 			<DashHeader isAdmin={isAdmin} />
 
 			<Box
-				bgcolor={grey[100]}
+				bgcolor={grey[50]}
 				className='space-y-12'
 				component='main'
 				height={{ md: "100%" }}

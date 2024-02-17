@@ -14,7 +14,7 @@ import ManageItemsPage from "@/pages/dashboard/manage-items";
 import ManageBookingsPage from "@/pages/dashboard/manage-bookings";
 import AllUsersPage from "@/pages/dashboard/users";
 import ReservationPage from "@/pages/dashboard/reservation";
-import PaymentPage from "@/pages/dashboard/payment";
+import PaymentHistoryPage from "@/pages/dashboard/payment-history";
 import MyCartPage from "@/pages/dashboard/cart";
 import AddReviewPage from "@/pages/dashboard/review";
 import MyBookingPage from "@/pages/dashboard/booking";
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
 			{ path: "manage-bookings", element: <ManageBookingsPage /> },
 			{ path: "users", element: <AllUsersPage /> },
 			{ path: "reservation", element: <ReservationPage /> },
-			{ path: "payment", element: <PaymentPage /> },
+			{ path: "payment-history", element: <PaymentHistoryPage /> },
 			{ path: "cart", element: <MyCartPage /> },
 			{ path: "review", element: <AddReviewPage /> },
 			{ path: "booking", element: <MyBookingPage /> },

@@ -39,7 +39,6 @@ const ShopCards = ({ cards, dataLoading }) => {
 			toast({
 				title: "Item Added!",
 				type: "success",
-				position: { horizontal: "right", vertical: "top" },
 				description: "Go to your dashboard to manage your cart.",
 			});
 

@@ -34,7 +34,6 @@ const AuthProvider = ({ children }) => {
 			toast({
 				title: "Email Address Already Taken!",
 				type: "error",
-				position: { horizontal: "right", vertical: "bottom" },
 				description:
 					"Someone has already signed up using this email address. If that's you, please sign in instead.",
 			});
@@ -51,7 +50,6 @@ const AuthProvider = ({ children }) => {
 			toast({
 				title: "Incorrect Email or Password!",
 				type: "error",
-				position: { horizontal: "right", vertical: "bottom" },
 				description:
 					"The email and password you entered doesn't match. Either your password is wrong or the email was never registered on our website. Try checking the spelling again.",
 			});

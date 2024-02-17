@@ -33,7 +33,7 @@ const userItems = [
 	{
 		icon: <AccountBalanceWallet />,
 		name: "Payment History",
-		path: "payment",
+		path: "payment-history",
 	},
 	{ icon: <ShoppingCart />, name: "My Cart", path: "cart" },
 	{ icon: <RateReview />, name: "My Review", path: "review" },

@@ -17,7 +17,7 @@ const ToastProvider = ({ children }) => {
 			{children}
 
 			<Snackbar
-				anchorOrigin={data.position}
+				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 				autoHideDuration={4000}
 				onClose={handleClose}
 				open={open}
