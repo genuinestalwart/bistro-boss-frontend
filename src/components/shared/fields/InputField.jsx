@@ -4,6 +4,7 @@ const InputField = ({
 	children,
 	errors = {},
 	field,
+	onChange = () => {},
 	register = () => {},
 	size,
 }) => {
@@ -20,6 +21,7 @@ const InputField = ({
 			label={field.label}
 			minRows={field.minRows}
 			multiline={field.multiline}
+			onChange={(e) => onChange(e.target.value)}
 			placeholder={field.placeholder}
 			{...register(field.id, field.validation)}
 			required

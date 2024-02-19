@@ -5,7 +5,6 @@ export const fields = [
 		id: "name",
 		label: "Name",
 		placeholder: "Enter your name",
-		type: "text",
 	},
 	{
 		autoComplete: "email",

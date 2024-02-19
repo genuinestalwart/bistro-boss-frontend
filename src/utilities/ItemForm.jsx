@@ -32,7 +32,7 @@ export const fields = (item) => [
 		select: true,
 	},
 	{
-		defaultValue: item.price || "1.00",
+		defaultValue: item.price,
 		id: "price",
 		inputProps: { step: "0.01" },
 		label: "Price",

@@ -7,12 +7,6 @@ const UploadImage = ({ editMode, preview, setImage, setPreview }) => {
 	const [error, setError] = useState(false);
 	const fileRef = useRef(null);
 
-	const hoverStyle = {
-		bgcolor: preview ? "rgb(21 21 21 / 0.5)" : grey[400],
-		boxShadow: 0,
-		opacity: 100,
-	};
-
 	const handleChange = ({ target }) => {
 		if (/(\.png|\.jpg|\.jpeg)$/.test(target.files[0].name)) {
 			setImage(target.files[0]);
@@ -77,8 +71,11 @@ const UploadImage = ({ editMode, preview, setImage, setPreview }) => {
 					opacity: preview ? 0 : 100,
 					position: "absolute",
 					zIndex: 10,
-					"&:hover": hoverStyle,
-					"&:has(+ .MuiFab-root:hover)": hoverStyle,
+					"&:hover, &:has(+ .MuiFab-root:hover)": {
+						bgcolor: preview ? "rgb(21 21 21 / 0.5)" : grey[400],
+						boxShadow: 0,
+						opacity: 100,
+					},
 				}}
 				variant='contained'>
 				<Chip color='accent' label='Upload Image' />

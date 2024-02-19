@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import { ShoppingCart } from "@mui/icons-material";
+import { Logout, ShoppingCart } from "@mui/icons-material";
 import useCart from "@/hooks/useCart";
 import StyledButton from "@/components/shared/buttons/StyledButton";
 
@@ -40,6 +40,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 					}
 					end
 					key={i}
+					onClick={() => setNavbarOpen(!navbarOpen)}
 					to={navItem.path}>
 					{navItem.name}
 				</NavLink>
@@ -99,7 +100,8 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						color='error'
 						onClick={logOut}
 						sx={{ color: "primary.main" }}>
-						Log Out
+						<span className='hidden md:inline'>Log Out</span>
+						<Logout sx={{ display: { md: "none" } }} />
 					</StyledButton>
 				</>
 			)}

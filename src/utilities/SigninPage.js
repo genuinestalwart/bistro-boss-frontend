@@ -27,7 +27,6 @@ export const fields = [
 		id: "captcha",
 		helperText: "Incorrect captcha. Please try again.",
 		placeholder: "Write the captcha here",
-		type: "text",
 		validation: { validate: (value) => validateCaptcha(value, false) },
 	},
 ];

@@ -1,5 +1,4 @@
 import { LocationOn, PhoneInTalk, WatchLater } from "@mui/icons-material";
-import SectionTitles from "@/components/shared/SectionTitles";
 import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
@@ -30,47 +29,43 @@ const contactInfo = [
 const OurLocation = () => {
 	return (
 		<Box
-			className='space-y-8'
-			component='section'
-			mx='auto'
-			width={{ xs: "80%", lg: "75%" }}>
-			<SectionTitles bigTitle='Our Location' smallTitle='Visit us' />
-
-			<Box
-				className='space-y-4 md:space-x-4 md:space-y-0'
-				display={{ md: "flex" }}>
-				{contactInfo.map((info, i) => (
-					<Box
-						borderColor={grey[200]}
-						className='md:w-1/3'
-						key={i}
-						sx={{ borderWidth: 1 }}
-						textAlign='center'>
-						<Box bgcolor='accent.main' color='primary.main' py={3}>
-							{info.icon}
-						</Box>
-
-						<Box
-							bgcolor={grey[200]}
-							className='h-36 space-y-2'
-							m={6}
-							mt={0}
-							py={6}>
-							<Typography
-								component='h3'
-								fontWeight={600}
-								textTransform='uppercase'
-								variant='body1'>
-								{info.infoName}
-							</Typography>
-
-							<Typography variant='body2'>
-								{info.details}
-							</Typography>
-						</Box>
+			display='grid'
+			gap={4}
+			gridTemplateColumns={{
+				xs: "repeat(1, 1fr)",
+				md: "repeat(3, 1fr)",
+			}}>
+			{contactInfo.map((info, i) => (
+				<Box
+					borderColor={grey[200]}
+					display='flex'
+					flexDirection='column'
+					key={i}
+					sx={{ borderWidth: 1 }}
+					textAlign='center'>
+					<Box bgcolor='accent.main' color='primary.main' py={3}>
+						{info.icon}
 					</Box>
-				))}
-			</Box>
+
+					<Box
+						bgcolor={grey[200]}
+						className='space-y-2'
+						flexGrow={1}
+						m={6}
+						mt={0}
+						py={6}>
+						<Typography
+							component='h3'
+							fontWeight={600}
+							textTransform='uppercase'
+							variant='body1'>
+							{info.infoName}
+						</Typography>
+
+						<Typography variant='body2'>{info.details}</Typography>
+					</Box>
+				</Box>
+			))}
 		</Box>
 	);
 };

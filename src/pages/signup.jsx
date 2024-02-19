@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import StyledButton from "@/components/shared/buttons/StyledButton";
-import InputField from "@/components/shared/InputField";
+import InputField from "@/components/shared/fields/InputField";
 import { fields } from "@/utilities/SignupPage";
 
 const SignupPage = () => {

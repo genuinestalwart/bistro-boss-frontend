@@ -54,7 +54,7 @@ const Testimonials = () => {
 								textAlign='center'
 								variant='body2'
 								width={{ xs: "60%", md: "75%" }}>
-								{review.details}
+								{review.review}
 							</Typography>
 
 							<Typography

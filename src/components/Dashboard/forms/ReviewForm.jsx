@@ -1,4 +1,4 @@
-import InputField from "@/components/shared/InputField";
+import InputField from "@/components/shared/fields/InputField";
 import StyledButton from "@/components/shared/buttons/StyledButton";
 import { AuthContext } from "@/providers/AuthProvider";
 import { ModalContext } from "@/providers/ModalProvider";

@@ -1,4 +1,4 @@
-import InputField from "@/components/shared/InputField";
+import InputField from "@/components/shared/fields/InputField";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import UploadImage from "@/components/Dashboard/UploadImage";

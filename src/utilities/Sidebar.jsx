@@ -37,7 +37,7 @@ const userItems = [
 	},
 	{ icon: <ShoppingCart />, name: "My Cart", path: "cart" },
 	{ icon: <RateReview />, name: "My Review", path: "review" },
-	{ icon: <PlayLesson />, name: "My Booking", path: "booking" },
+	{ icon: <PlayLesson />, name: "My Bookings", path: "bookings" },
 ];
 
 export const dashNavItems = [

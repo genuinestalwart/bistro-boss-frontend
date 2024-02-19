@@ -14,6 +14,7 @@ const Sidebar = ({ isAdmin, sidebarOpen, setSidebarOpen }) => {
 					}
 					end
 					key={i}
+					onClick={() => setSidebarOpen(!sidebarOpen)}
 					to={dashNavItem.path}>
 					<NavButton
 						icon={dashNavItem.icon}

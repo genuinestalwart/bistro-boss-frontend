@@ -8,7 +8,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import StyledButton from "@/components/shared/buttons/StyledButton";
-import InputField from "@/components/shared/InputField";
+import InputField from "@/components/shared/fields/InputField";
 import { fields } from "@/utilities/SigninPage";
 
 const SigninPage = () => {

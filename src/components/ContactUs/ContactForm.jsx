@@ -2,7 +2,7 @@ import { grey } from "@mui/material/colors";
 import { Box } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import StyledButton from "@/components/shared/buttons/StyledButton";
-import InputField from "../shared/InputField";
+import InputField from "@/components/shared/fields/InputField";
 import { fields } from "@/utilities/ContactForm";
 
 const ContactForm = () => {

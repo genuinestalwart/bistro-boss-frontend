@@ -7,14 +7,16 @@ import "swiper/css/pagination";
 import "@/index.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/cinzel";
-import { RouterProvider, ScrollRestoration } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
-import { HelmetProvider } from "react-helmet-async";
-import AuthProvider from "@/providers/AuthProvider";
-import ToastProvider from "@/providers/ToastProvider";
-import { router } from "@/Routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import ModalProvider from "@/providers/ModalProvider";
+import ToastProvider from "@/providers/ToastProvider";
+import AuthProvider from "@/providers/AuthProvider";
+import { HelmetProvider } from "react-helmet-async";
+import { RouterProvider, ScrollRestoration } from "react-router-dom";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { router } from "@/Routes";
 import { theme } from "@/theme.config";
 const client = new QueryClient();
 
@@ -22,17 +24,19 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<QueryClientProvider client={client}>
 			<ThemeProvider theme={theme}>
-				<ModalProvider>
-					<ToastProvider>
-						<AuthProvider>
-							<HelmetProvider>
-								<RouterProvider router={router}>
-									<ScrollRestoration />
-								</RouterProvider>
-							</HelmetProvider>
-						</AuthProvider>
-					</ToastProvider>
-				</ModalProvider>
+				<LocalizationProvider dateAdapter={AdapterMoment}>
+					<ModalProvider>
+						<ToastProvider>
+							<AuthProvider>
+								<HelmetProvider>
+									<RouterProvider router={router}>
+										<ScrollRestoration />
+									</RouterProvider>
+								</HelmetProvider>
+							</AuthProvider>
+						</ToastProvider>
+					</ModalProvider>
+				</LocalizationProvider>
 			</ThemeProvider>
 		</QueryClientProvider>
 	</React.StrictMode>

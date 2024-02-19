@@ -16,6 +16,7 @@
 		"@fontsource-variable/inter": "^5.0.16",
 		"@mui/icons-material": "^5.15.4",
 		"@mui/material": "^5.15.4",
+		"@mui/x-date-pickers": "^6.19.4",
 		"@stripe/react-stripe-js": "^2.5.0",
 		"@stripe/stripe-js": "^3.0.3",
 		"@tanstack/react-query": "^5.18.1",

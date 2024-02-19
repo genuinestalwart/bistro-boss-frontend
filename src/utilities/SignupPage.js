@@ -4,7 +4,6 @@ export const fields = [
 		fullWidth: true,
 		id: "name",
 		label: "Name",
-		type: "text",
 		validation: { maxLength: 32, minLength: 3 },
 	},
 	{

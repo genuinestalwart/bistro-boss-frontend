@@ -17,10 +17,17 @@ const ContactUsPage = () => {
 				title='Contact Us'
 			/>
 
-			<OurLocation />
+			<Box
+				className='space-y-12'
+				component='section'
+				mx='auto'
+				width={{ xs: "80%", lg: "75%" }}>
+				<SectionTitles bigTitle='Our Location' smallTitle='Visit us' />
+				<OurLocation />
+			</Box>
 
 			<Box
-				className='space-y-8'
+				className='space-y-12'
 				component='section'
 				mx='auto'
 				width={{ xs: "80%", md: "75%" }}>
