@@ -33,30 +33,30 @@ const UserRow = ({ refetch, users }) => {
 
 	return (
 		<>
-			{users.map((user, i) => (
+			{users.map((row, i) => (
 				<TableRow key={i}>
 					<TableCell align='center' sx={{ fontWeight: 700 }}>
 						{i + 1}
 					</TableCell>
 
-					<TableCell>{user.name}</TableCell>
-					<TableCell>{user.email}</TableCell>
+					<TableCell>{row.name}</TableCell>
+					<TableCell>{row.email}</TableCell>
 
 					<TableCell align='center'>
 						<ActionButton
 							color='accent'
-							disabled={user.role === "admin"}
-							onClick={() => handleAdmin(user._id, user.name)}>
-							{user.role === "admin" ? <Security /> : <Groups />}
+							disabled={row.role === "admin"}
+							onClick={() => handleAdmin(row._id, row.name)}>
+							{row.role === "admin" ? <Security /> : <Groups />}
 						</ActionButton>
 					</TableCell>
 
 					<TableCell align='center'>
 						<ActionButton
 							color='error'
-							disabled={user.role === "admin"}
-							onClick={() => handleDelete(user._id, user.name)}>
-							{user.role === "admin" ? <Lock /> : <Delete />}
+							disabled={row.role === "admin"}
+							onClick={() => handleDelete(row._id, row.name)}>
+							{row.role === "admin" ? <Lock /> : <Delete />}
 						</ActionButton>
 					</TableCell>
 				</TableRow>

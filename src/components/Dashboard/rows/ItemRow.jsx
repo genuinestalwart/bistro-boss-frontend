@@ -22,7 +22,7 @@ const ItemRow = ({ handleOpen, items, refetch }) => {
 
 	return (
 		<>
-			{items.map((item, i) => (
+			{items.map((row, i) => (
 				<TableRow key={i}>
 					<TableCell align='center' sx={{ fontWeight: 700 }}>
 						{i + 1}
@@ -30,19 +30,19 @@ const ItemRow = ({ handleOpen, items, refetch }) => {
 
 					<TableCell align='center'>
 						<img
-							alt={item.name}
+							alt={row.name}
 							className='h-16 object-center object-cover w-16'
-							src={item.image}
+							src={row.image}
 						/>
 					</TableCell>
 
-					<TableCell>{item.name}</TableCell>
-					<TableCell align='right'>${item.price}</TableCell>
+					<TableCell>{row.name}</TableCell>
+					<TableCell align='right'>${row.price}</TableCell>
 
 					<TableCell align='center'>
 						<ActionButton
 							color='accent'
-							onClick={() => handleOpen(item)}>
+							onClick={() => handleOpen(row)}>
 							<Edit />
 						</ActionButton>
 					</TableCell>
@@ -50,7 +50,7 @@ const ItemRow = ({ handleOpen, items, refetch }) => {
 					<TableCell align='center'>
 						<ActionButton
 							color='error'
-							onClick={() => handleDelete(item._id, item.name)}>
+							onClick={() => handleDelete(row._id, row.name)}>
 							<Delete />
 						</ActionButton>
 					</TableCell>

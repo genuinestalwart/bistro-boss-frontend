@@ -34,7 +34,7 @@ const MyCartPage = () => {
 			{open ? (
 				<Payment
 					data={cart}
-					payingFor='cart'
+					category='Food Order'
 					price={totalPrice}
 					refetch={refetch}
 					setOpen={setOpen}

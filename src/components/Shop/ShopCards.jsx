@@ -42,7 +42,7 @@ const ShopCards = ({ cards, dataLoading }) => {
 				description: "Go to your dashboard to manage your cart.",
 			});
 
-			refetch();
+			await refetch();
 		}
 	};
 

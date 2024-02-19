@@ -25,8 +25,8 @@ export const fields = [
 		gridColumn: { md: "span 2 / span 2" },
 		id: "message",
 		label: "Message",
+		minRows: 8,
 		multiline: true,
 		placeholder: "Write your message here",
-		minRows: 8,
 	},
 ];

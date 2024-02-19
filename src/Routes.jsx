@@ -16,7 +16,7 @@ import AllUsersPage from "@/pages/dashboard/users";
 import ReservationPage from "@/pages/dashboard/reservation";
 import PaymentHistoryPage from "@/pages/dashboard/payment-history";
 import MyCartPage from "@/pages/dashboard/cart";
-import AddReviewPage from "@/pages/dashboard/review";
+import MyReviewPage from "@/pages/dashboard/review";
 import MyBookingPage from "@/pages/dashboard/booking";
 
 export const router = createBrowserRouter([
@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
 			{ path: "reservation", element: <ReservationPage /> },
 			{ path: "payment-history", element: <PaymentHistoryPage /> },
 			{ path: "cart", element: <MyCartPage /> },
-			{ path: "review", element: <AddReviewPage /> },
+			{ path: "review", element: <MyReviewPage /> },
 			{ path: "booking", element: <MyBookingPage /> },
 		],
 	},

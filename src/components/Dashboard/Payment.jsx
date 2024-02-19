@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import CheckoutForm from "@/components/Dashboard/forms/CheckoutForm";
 const stripePromise = loadStripe(import.meta.env.VITE_publishable_key);
 
-const Payment = ({ data, payingFor, price, refetch, setOpen }) => {
+const Payment = ({ data, category, price, refetch, setOpen }) => {
 	const [error, setError] = useState("");
 	const [transactionID, setTransactionID] = useState("");
 	const axiosSecure = useAxiosSecure();
@@ -48,10 +48,10 @@ const Payment = ({ data, payingFor, price, refetch, setOpen }) => {
 
 		if (paymentIntent?.status === "succeeded") {
 			await axiosSecure.post("/payments", {
+				category,
 				dataIDs: data.map((item) => item._id),
 				email: user.email,
 				menuIDs: data.map((item) => item.menuID),
-				payingFor,
 				price,
 				status: "pending",
 				timestamp: moment().unix(),
@@ -65,7 +65,7 @@ const Payment = ({ data, payingFor, price, refetch, setOpen }) => {
 			});
 
 			setTransactionID(paymentIntent.id);
-			refetch();
+			await refetch();
 		}
 	};
 

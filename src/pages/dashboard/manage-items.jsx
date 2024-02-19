@@ -75,7 +75,7 @@ const ManageItemsPage = () => {
 						...newItem,
 					});
 
-					refetch();
+					await refetch();
 					setOpenEdit(false);
 				}
 			},
