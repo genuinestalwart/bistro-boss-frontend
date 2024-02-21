@@ -28,7 +28,10 @@ const DashLayout = () => {
 	return loading || isLoading ? (
 		<PageLoading />
 	) : user && (!isAdminRoute || isAdmin) ? (
-		<Box display={{ md: "flex" }} height={{ md: "100vh" }}>
+		<Box
+			display={{ md: "flex" }}
+			height={{ md: "100vh" }}
+			maxHeight={{ "2xl": "810px" }}>
 			<DashHeader isAdmin={isAdmin} />
 
 			<Box

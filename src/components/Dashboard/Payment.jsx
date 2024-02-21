@@ -47,11 +47,16 @@ const Payment = ({ data, category, price, refetch, setOpen }) => {
 		setError(confirmError ? confirmError.message : "");
 
 		if (paymentIntent?.status === "succeeded") {
+			const menuIDs =
+				category === "Food Order"
+					? data.map((item) => item.menuID)
+					: [];
+
 			await axiosSecure.post("/payments", {
 				category,
 				dataIDs: data.map((item) => item._id),
 				email: user.email,
-				menuIDs: data.map((item) => item.menuID),
+				menuIDs,
 				price,
 				status: "pending",
 				timestamp: moment().unix(),

@@ -70,19 +70,21 @@ const AuthProvider = ({ children }) => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
 
-			currentUser
-				? axiosPublic
-						.post("/auth", { email: currentUser.email })
-						.then((res) => {
-							res.data.token &&
-								localStorage.setItem(
-									"access-token",
-									res.data.token
-								);
-						})
-				: localStorage.removeItem("access-token");
+			if (currentUser) {
+				axiosPublic
+					.post("/auth", { email: currentUser.email })
+					.then((res) => {
+						const token = res.data.token;
 
-			setLoading(false);
+						if (token) {
+							localStorage.setItem("access-token", token);
+							setLoading(false);
+						}
+					});
+			} else {
+				localStorage.removeItem("access-token");
+				setLoading(false);
+			}
 		});
 
 		return () => unsubscribe();

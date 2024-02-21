@@ -15,7 +15,7 @@ const UserRow = ({ refetch, users }) => {
 			color: "success",
 			description: `Are you sure you want to make "${name}" an admin?`,
 			onClick: () =>
-				axiosSecure.patch(`/users/admin/${id}`).then(() => refetch()),
+				axiosSecure.patch(`/admin/${id}`).then(() => refetch()),
 			title: "Update Role To Admin",
 		});
 	};
