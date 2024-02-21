@@ -19,7 +19,8 @@ const Hero = () => {
 				interval={4000}
 				showArrows={false}
 				showStatus={false}
-				stopOnHover={false}>
+				stopOnHover={false}
+				swipeable={false}>
 				{[
 					carouselSlide1,
 					carouselSlide2,
